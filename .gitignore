@@ -1,0 +1,29 @@
+# Dependencies (frameworks/libraries)
+node_modules/
+bower_components/
+jspm_packages/
+web_modules/
+
+# Build outputs
+/dist/
+/build/
+/out/
+/.cache/
+
+# Bundler artifacts
+.parcel-cache/
+.vite/
+.next/
+.nuxt/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
