@@ -35,11 +35,10 @@ A modern, responsive web platform for university students to discover upcoming a
 - Tag selection
 - Event status indicator (pending approval / approved / rejected)
 
-### 5) Admin Dashboard
-- Event approval queue
-- Event preview
-- Approve / reject / request edits
-- Tag management
+### 5) Clubs Page
+- Grid/list of all student clubs
+- Club cards with logo, name, category, and short bio
+- View Club Profile button link 
 
 ### 6) Login Page
 - Email/username + password inputs with clear labels
