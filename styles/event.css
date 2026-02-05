@@ -1,0 +1,100 @@
+body{
+    font-family: Arial, sans-serif;
+    display: flex ;
+    flex-direction: column;
+    height: 100vh;
+    margin:0;
+    
+}
+.image_side{
+    flex:2;
+    min-height: 300px;
+    background-image: url(../assets/images/image_css.jpg) ;
+    background-size: cover;
+    background-position:center;
+    position: relative;
+    opacity: 0.8;
+    border-bottom: 1px solid #ad9d61;
+}
+.content_side{
+    flex:1;
+     display: flex ;
+   flex-direction: row;
+  justify-content: center; 
+  align-items: center;
+   gap:50px;
+   padding:20px ;
+   max-width: 90%;
+  
+   
+}
+header {
+  margin-bottom: 20px;
+  color: #fff;
+   
+}
+
+.left{
+    flex:1.5;
+    border-radius: 10px;
+    align-items: center;
+    padding:20px;
+    max-width: 50%;
+    background-color: #2b3e4e; 
+  background-color: #2b3e4e; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+}
+.right{
+    flex:1;
+    display: flex;
+     flex-direction: column;
+    border-radius: 10px;
+    justify-content: center; 
+    align-items: center;
+    gap: 2px;
+    padding:20px;
+     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     background-color: #820608;
+    
+}
+.participants-line {
+  width: 100%;
+  background-color: #fff;
+    
+  border-radius: 8px;
+  margin-bottom: 20px;
+  
+}
+
+.progress {
+  height: 15px;
+  background-color: grey;   
+  
+  font-weight:normal;
+  text-align: center;
+  color: #fff;
+  line-height: 15px;        
+  
+ 
+}
+
+.right button{
+    width:80%;
+   padding: 10px 40px;
+    border-radius: 5px;
+     
+  
+    margin-bottom: 1px;
+}
+.reg{
+  background-color: #224b00;
+}
+.left> p{
+border-radius: 8px;      
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  width: 60%;
+  padding: 10px 10px;
+  background-color: #fff;
+ margin-bottom: 15px;
+}
