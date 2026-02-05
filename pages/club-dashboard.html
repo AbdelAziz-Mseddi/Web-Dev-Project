@@ -7,6 +7,8 @@
         <link rel="stylesheet" href="../styles/components.css">
         <link rel="stylesheet" href="../styles/layout.css">
         <link rel="stylesheet" href="../styles/page.css">
+        <link rel="stylesheet" href="../styles/club-dashboard.css">
+        <script src="../scripts/club-dashboard.js" defer></script>
     </head>
     <body>
         <header class="main-header">
@@ -24,5 +26,48 @@
             </div>
         </div>
     </header>
+
+    <div class="dashboard-grid">
+      <div class="sidebar">
+        <div class="sidebar_link" data-target="home">
+          <img src="../assets/icons/home.svg">
+          <div>Home</div>
+        </div>
+        <div class="sidebar_link" data-target="pending">
+          <img src="../assets/icons/pending.svg">
+          <div>Pending</div>
+        </div>
+        <div class="sidebar_link" data-target="create">
+          <img src="../assets/icons/create_event.svg">
+          <div>Create Event</div>
+        </div>
+        <div class="sidebar_link" data-target="members">
+          <img src="../assets/icons/members.svg">
+          <div>Members</div>
+        </div>
+        <div class="sidebar_link" data-target="history">
+          <img src="../assets/icons/history.svg">
+          <div>History</div>
+        </div>
+      </div>
+
+      <div class="panel" data-panel="home">
+        HOME
+      </div>
+      <div class="panel" data-panel="pending">
+        PENDING
+      </div>
+      <div class="panel" data-panel="create">
+        CREATE
+      </div>
+      <div class="panel" data-panel="members">
+        MEMBERS
+      </div>
+      <div class="panel" data-panel="history">
+        HISTORY
+      </div>
+    </div>
+
+
     </body>
 </html>
