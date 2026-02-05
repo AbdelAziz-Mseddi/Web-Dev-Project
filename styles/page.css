@@ -1,0 +1,189 @@
+/*------------------------login page-----------------------------*/
+/* Custom Login Body with your Uni Background */
+.login-body {
+    background: url('../assets/images/uni-image.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* The Glass Box */
+.glass-container {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    padding: 30px 40px;
+    border-radius: var(--radius-lg); /* Using teammate's variable from base.css */
+    color: var(--surface-white);
+}
+
+.glass-container h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+/* Input boxes with icons */
+.input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px; /* Fully rounded as requested */
+    padding: 20px 45px 20px 20px;
+    color: white;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+/* Specific Login Button */
+.login-submit-btn {
+    width: 100%;
+    height: 45px;
+    background: var(--surface-white);
+    color: var(--primary-blue);
+    border-radius: 40px;
+}
+.register-link a {
+    color: var(--accent-gold); /* Using your teammate's gold variable from base.css */
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Styling the actual labels above the inputs */
+.input-box label {
+    color: var(--olive-green);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+/* Styling the placeholder text inside the boxes if you don't use labels */
+.input-box input::placeholder {
+    color: var(--olive-green);
+    opacity: 1; /* Makes the green vivid */
+}
+
+/* Styling the icons (User/Lock) to match */
+.input-box i {
+    color: var(--olive-green);
+}
+
+/*-------------------------register page----------------------------*/
+
+/* Make the register card slightly larger for all the fields */
+.register-card {
+    width: 500px; /* Slightly wider than login */
+    margin: 20px 0; /* Adds space so it doesn't touch screen edges on small monitors */
+}
+
+/* Style for the Privacy Checkbox row */
+.terms-check {
+    font-size: 13px;
+    margin: -10px 0 20px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.terms-check input {
+    margin-right: 10px;
+    accent-color: var(--accent-gold); /* Checkbox matches team colors */
+}
+
+/* Adjusting spacing for the Register form specifically */
+.register-card .input-box {
+    margin: 20px 0; /* Slightly tighter spacing to fit all fields */
+}
+/* This targets the actual dropdown box */
+.input-box select {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    padding: 0 45px 0 20px;
+    color: white;
+    cursor: pointer;
+    appearance: none; /* Removes default arrow */
+    outline: none;
+}
+
+/* This targets the list that pops up when you click */
+.input-box select option {
+    background-color: var(--primary-blue); /* Sets a dark background so white text shows */
+    color: white;
+}
+
+/* 1. Make the select text look like a muted placeholder by default */
+.input-box select {
+    color: rgba(59, 68, 27, 0.7) !important; /* Your dark olive but 70% transparent */
+    font-weight: 400; /* Normal weight, not bold */
+}
+
+/* 2. Style the icons to match the same muted olive */
+.input-box i {
+    color: rgba(59, 68, 27, 0.7);
+}
+
+/* 3. This is the trick: when the user actually picks something, make it bold/dark */
+.input-box select:valid {
+    color: var(--olive-green) !important;
+    font-weight: 600;
+}
+/* Container for the email input + suffix */
+.email-group {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Adjust the input to make room for the suffix on the right */
+.email-group input {
+    padding-right: 140px; /* Adjust this based on the suffix width */
+    color: var(--success-green) !important;
+}
+
+/* Style the domain suffix */
+.domain-suffix {
+    position: absolute;
+    right: 45px; /* Keeps it to the left of the envelope icon */
+    color: var(--success-green);
+    font-weight: 600;
+    font-size: 0.85rem;
+    pointer-events: none; /* User can't click it */
+    opacity: 0.8;
+}
+
+/* Adjust the icon position slightly if needed */
+.email-group i {
+    right: 15px;
+}
