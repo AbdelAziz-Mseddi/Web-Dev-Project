@@ -19,6 +19,12 @@
     gap: 2rem;
 }
 
+.header-actions {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
 .nav-link {
     color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
@@ -27,6 +33,12 @@
 
 .nav-link.active, .nav-link:hover {
     color: var(--accent-gold);
+}
+
+.header-actions {
+    display: "flex";
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Dashboard Grid Layout */
