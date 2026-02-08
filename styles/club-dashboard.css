@@ -13,6 +13,7 @@
     align-items: center;
     flex-direction: column;
     cursor: pointer;
+    transition: background-color 0.3s ease, height 0.3s ease;
 }
 .sidebar_link[data-role="admin"]:hover {
     background-color: var(--olive-green);
@@ -22,9 +23,7 @@
 }
 .sidebar_link:hover{
     background-color: #820608;
-    transition: background-color 0.3s ease ;
     height: 100px;
-    transition: height 0.3s ease ;
 }
 .sidebar_link.active {
     background: #405033;
