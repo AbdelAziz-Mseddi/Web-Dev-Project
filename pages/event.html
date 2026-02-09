@@ -3,37 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event</title>
-    <link rel="stylesheet" href="../styles/event.css">
-     <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/base.css">
     <link rel="stylesheet" href="../styles/layout.css">
     <link rel="stylesheet" href="../styles/components.css">
-
-
+    <link rel="stylesheet" href="../styles/page.css">
+    <link rel="stylesheet" href="../styles/event.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Event | UniEvents</title>
 </head>
 <body>
-    <div class="image_side"></div>
-    <div class="content_side">
-    <section class="left">
-    <header>
-        <h1>NAME OF THE EVENT</h1>
-        <p>name of the club</p>
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="logo">UniEvents</div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link active">Events</a>
+                <a href="calendar.html" class="nav-link">Calendar</a>
+                <a href="clubs.html" class="nav-link">Clubs</a>
+            </nav>
+            <div class="header-actions">
+                <img class="profile-avatar" src="../assets/icons/search.svg" alt="Search">
+                <img class="profile-avatar" src="../assets/icons/notifications.svg" alt="Notifications">
+                <img class="profile-avatar" src="../assets/icons/user.svg" alt="User">
+            </div>
+        </div>
     </header>
-    <p><strong>📅 Date :</strong> date</p>
-    <p><strong>⏰Heure :</strong> time</p>
-    <p><strong>📍Lieu :</strong> place </p>
-    <p><strong>📖description:</strong> texte </p>
-</section>
-<section class="right">
-    
-    <div class="participants-line">
-    <div class="progress" style="width: 60%;">30 / 50 participants</div>
-  </div>
- 
-    <button class="reg">Register now</button><br>
-    <button>add to calender</button><br>
-    <button>share event</button><br>
-</section>
-</div>
+
+    <main class="dashboard-container event-page" aria-label="Event page">
+        <section class="event-hero" aria-label="Event cover">
+            <img class="event-hero-image" src="../assets/images/event_pic.jpeg" alt="Event cover">
+            <div class="event-hero-overlay" aria-hidden="true"></div>
+            <div class="event-hero-content">
+                <div class="event-hero-meta">
+                    <span class="badge badge-gold" id="event-tag">Event</span>
+                    <a class="event-hero-club" href="clubs.html" id="event-club">name of the club</a>
+                </div>
+                <h1 class="event-title" id="event-title">NAME OF THE EVENT</h1>
+                <p class="event-subtitle" id="event-subtitle">Hosted by <span id="event-club-inline">name of the club</span></p>
+                <div class="event-meta-pills" aria-label="Event meta">
+                    <span class="event-meta-pill" id="event-date-pill">📅 <span id="event-date-pill-value">date</span></span>
+                    <span class="event-meta-pill" id="event-time-pill">⏰ <span id="event-time-pill-value">time</span></span>
+                    <span class="event-meta-pill" id="event-location-pill">📍 <span id="event-location-pill-value">place</span></span>
+                </div>
+            </div>
+        </section>
+
+        <section class="event-grid" aria-label="Event details and actions">
+            <article class="event-card event-details" aria-label="Event details">
+                <div class="event-details-header">
+                    <h2 class="event-section-title">Details</h2>
+                    <span class="event-status" id="event-status">Open</span>
+                </div>
+
+                <div class="event-kv-grid" role="list">
+                    <div class="event-kv" role="listitem">
+                        <div class="event-kv-label">Date</div>
+                        <div class="event-kv-value" id="event-date">date</div>
+                    </div>
+                    <div class="event-kv" role="listitem">
+                        <div class="event-kv-label">Time</div>
+                        <div class="event-kv-value" id="event-time">time</div>
+                    </div>
+                    <div class="event-kv" role="listitem">
+                        <div class="event-kv-label">Location</div>
+                        <div class="event-kv-value" id="event-location">place</div>
+                    </div>
+                    <div class="event-kv" role="listitem">
+                        <div class="event-kv-label">Places</div>
+                        <div class="event-kv-value" id="event-capacity">50</div>
+                    </div>
+                </div>
+
+                <div class="event-description">
+                    <h3 class="event-section-subtitle">About</h3>
+                    <p id="event-description">texte</p>
+                </div>
+            </article>
+
+            <aside class="event-card event-actions" aria-label="Event actions">
+                <div class="event-actions-header">
+                    <h2 class="event-section-title">Join</h2>
+                    <div class="event-capacity-chip" id="event-capacity-chip">30 / 50</div>
+                </div>
+
+                <div class="event-progress" aria-label="Participants progress">
+                    <div class="event-progress-track">
+                        <div class="event-progress-fill" id="event-progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <div class="event-progress-label" id="event-progress-label">30 / 50 participants</div>
+                </div>
+
+                <div class="event-actions-buttons">
+                    <button class="btn btn-gold" id="event-register-btn" type="button">Register now</button>
+                    <button class="btn event-secondary-btn" id="event-calendar-btn" type="button">Add to calendar</button>
+                    <button class="btn event-secondary-btn" id="event-share-btn" type="button">Share event</button>
+                </div>
+
+                <div class="event-actions-note" id="event-actions-note">
+                    Registration closes when capacity is reached.
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>UniEvents</h3>
+                <p>Managing campus life, one event at a time.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Platform</h4>
+                    <a href="index.html">Explore</a>
+                    <a href="clubs.html">Clubs</a>
+                    <a href="calendar.html">Calendar</a>
+                </div>
+                <div class="link-group">
+                    <h4>Support</h4>
+                    <a href="#">Help Center</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Privacy</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 UniEvents Project</p>
+        </div>
+    </footer>
 </body>
 </html>

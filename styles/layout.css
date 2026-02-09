@@ -36,9 +36,21 @@
 }
 
 .header-actions {
-    display: "flex";
+    display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+/* Brand */
+.logo {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 1.15rem;
+    color: #fff;
+}
+
+.logo:hover {
+    color: var(--accent-gold);
 }
 
 /* Dashboard Grid Layout */
