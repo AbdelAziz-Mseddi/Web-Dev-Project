@@ -217,65 +217,44 @@
           <div class="feedback-header">
             <div>
               <h2 class="feedback-title">Community Feedback</h2>
-              <p class="feedback-subtitle">Help the club improve. Your voice stays anonymous.</p>
-            </div>
-            <div class="feedback-anon">
-              <span class="feedback-anon-dot" aria-hidden="true"></span>
-              <span>Anonymous by default. We do not collect names or emails.</span>
+              <p class="feedback-subtitle">Rate a past event from the club’s history. You can add a message. Feedback is anonymous.</p>
             </div>
           </div>
 
           <form class="feedback-form">
             <div class="feedback-card">
               <div class="feedback-card-header">
-                <h3 class="feedback-card-title">Choose your feedback type</h3>
-                <span class="feedback-note">Select one</span>
+                <h3 class="feedback-card-title">Select an event to rate</h3>
+                <span class="feedback-note">From history</span>
               </div>
-              <div class="feedback-type-group" role="radiogroup" aria-label="Feedback type">
-                <label class="feedback-type">
-                  <input type="radio" name="feedback-type" value="positive" required>
-                  <span class="feedback-type-label">Positive</span>
-                  <span class="feedback-type-desc">Share what worked well.</span>
-                </label>
-                <label class="feedback-type">
-                  <input type="radio" name="feedback-type" value="negative">
-                  <span class="feedback-type-label">Negative</span>
-                  <span class="feedback-type-desc">Point out pain points.</span>
-                </label>
-                <label class="feedback-type">
-                  <input type="radio" name="feedback-type" value="suggestion">
-                  <span class="feedback-type-label">Suggestion</span>
-                  <span class="feedback-type-desc">Offer a new idea.</span>
-                </label>
-              </div>
+              <label class="form-label" for="feedback-event">Event</label>
+              <select class="form-input" id="feedback-event" name="feedback-event" required aria-label="Choose a past event">
+                <option value="">Choose an event…</option>
+                <option value="culture-night">Culture Night</option>
+                <option value="global-art-workshop">Global Art Workshop</option>
+              </select>
             </div>
 
             <div class="feedback-card">
               <div class="feedback-card-header">
-                <h3 class="feedback-card-title">Share the details</h3>
-                <span class="feedback-note">Be specific if you can.</span>
+                <h3 class="feedback-card-title">Your rating</h3>
+                <span class="feedback-note">Required</span>
+              </div>
+              <label class="form-label" for="feedback-rating">How would you rate this event? (0–5)</label>
+              <input class="form-input" id="feedback-rating" name="feedback-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
+            </div>
+
+            <div class="feedback-card">
+              <div class="feedback-card-header">
+                <h3 class="feedback-card-title">Message (optional)</h3>
+                <span class="feedback-note">Add details if you like</span>
               </div>
               <label class="form-label" for="feedback-message">Your message</label>
-              <textarea class="form-input form-textarea" id="feedback-message" name="feedback-message" rows="6" placeholder="Write a clear paragraph about your experience, suggestion, or concern." required></textarea>
-              <div class="feedback-helper">
-                <span>Tip: Mention the event or activity name if relevant.</span>
-                <span class="feedback-minimum">Minimum 40 characters.</span>
-              </div>
-            </div>
-
-            <div class="feedback-card">
-              <div class="feedback-card-header">
-                <h3 class="feedback-card-title">Attach an image (optional)</h3>
-                <span class="feedback-note">Screenshots help the team act faster.</span>
-              </div>
-              <div class="form-file">
-                <input class="form-input form-file-input" id="feedback-image" name="feedback-image" type="file" accept="image/*">
-                <span class="form-file-hint">JPG or PNG, up to 5MB.</span>
-              </div>
+              <textarea class="form-input form-textarea" id="feedback-message" name="feedback-message" rows="4" placeholder="Share more about your experience—what you liked, what could be better, or suggestions for next time."></textarea>
             </div>
 
             <div class="feedback-footer">
-              <button class="btn btn-gold feedback-submit" type="submit">Send Feedback</button>
+              <button class="btn btn-gold feedback-submit" type="submit">Submit rating</button>
             </div>
           </form>
         </section>
@@ -405,15 +384,8 @@
                 <form class="done-review-form">
                   <div class="done-form-row">
                     <div class="form-field">
-                      <label class="form-label" for="done-rating-1">How well did it go?</label>
-                      <select class="form-input" id="done-rating-1" name="done-rating" required aria-label="Rate from 1 to 5">
-                        <option value="">Select rating</option>
-                        <option value="1">1 – Poor</option>
-                        <option value="2">2 – Fair</option>
-                        <option value="3">3 – Good</option>
-                        <option value="4">4 – Very good</option>
-                        <option value="5">5 – Excellent</option>
-                      </select>
+                      <label class="form-label" for="done-rating-1">How well did it go? (0–5)</label>
+                      <input class="form-input" id="done-rating-1" name="done-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
                     </div>
                     <div class="form-field">
                       <label class="form-label" for="done-attendance-1">Number attended</label>
@@ -455,15 +427,8 @@
                 <form class="done-review-form">
                   <div class="done-form-row">
                     <div class="form-field">
-                      <label class="form-label" for="done-rating-2">How well did it go?</label>
-                      <select class="form-input" id="done-rating-2" name="done-rating" required aria-label="Rate from 1 to 5">
-                        <option value="">Select rating</option>
-                        <option value="1">1 – Poor</option>
-                        <option value="2">2 – Fair</option>
-                        <option value="3">3 – Good</option>
-                        <option value="4">4 – Very good</option>
-                        <option value="5">5 – Excellent</option>
-                      </select>
+                      <label class="form-label" for="done-rating-2">How well did it go? (0–5)</label>
+                      <input class="form-input" id="done-rating-2" name="done-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
                     </div>
                     <div class="form-field">
                       <label class="form-label" for="done-attendance-2">Number attended</label>
