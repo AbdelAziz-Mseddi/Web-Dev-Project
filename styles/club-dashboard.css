@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Club Dashboard — layout and panel-specific styles for club-dashboard.html
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Sidebar navigation (left rail: Home, Community, History, Pending, Done, Create)
+   -------------------------------------------------------------------------- */
 .sidebar{
     left: 0;
     bottom: 0;
@@ -41,6 +48,9 @@
 .sidebar_link:hover div{
     color: #ad9d61;
 }
+/* --------------------------------------------------------------------------
+   Dashboard layout: sidebar + main content area (panels)
+   -------------------------------------------------------------------------- */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 100px 1fr;
@@ -53,6 +63,9 @@
     background-color: var(--bg-color);
 }
 
+/* --------------------------------------------------------------------------
+   Club Home panel — banner, logo, name, tags, description, meta cards (members, premises)
+   -------------------------------------------------------------------------- */
 .club-home {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -60,6 +73,7 @@
     box-shadow: var(--shadow-subtle);
 }
 
+/* Club home: hero banner and overlay */
 .club-banner {
     width: 100%;
     height: 180px;
@@ -130,6 +144,7 @@
     max-width: 720px;
 }
 
+/* Club home: meta cards (e.g. Members count, Premises) */
 .club-meta-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -157,6 +172,9 @@
     color: var(--text-main);
 }
 
+/* --------------------------------------------------------------------------
+   Create Event panel — form container, header, and shared form controls
+   -------------------------------------------------------------------------- */
 .event-create {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -184,6 +202,7 @@
     gap: 1.5rem;
 }
 
+/* Shared form layout and fields (used by Create Event and Done review) */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -269,6 +288,9 @@
     padding: 0.75rem 1.6rem;
 }
 
+/* --------------------------------------------------------------------------
+   Pending panel — events awaiting admin approval (list, cards, cover themes, badges)
+   -------------------------------------------------------------------------- */
 .pending {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -306,6 +328,7 @@
     font-size: 0.85rem;
 }
 
+/* Pending event cards: list and single card layout */
 .pending-list {
     display: flex;
     flex-direction: column;
@@ -322,6 +345,7 @@
     box-shadow: 0 8px 18px rgba(43, 62, 78, 0.06);
 }
 
+/* Pending card: cover image area and theme variants (night, art, story) */
 .pending-cover {
     min-height: 170px;
     display: flex;
@@ -354,6 +378,7 @@
     border-radius: 999px;
 }
 
+/* Pending card: body (badge, date, name, tags, description) */
 .pending-body {
     padding: 1.25rem 1.5rem 1.35rem;
     display: flex;
@@ -401,6 +426,9 @@
     color: var(--text-muted);
 }
 
+/* --------------------------------------------------------------------------
+   Community Feedback panel — anonymous feedback form, type selection, message, optional image
+   -------------------------------------------------------------------------- */
 .feedback {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -448,6 +476,7 @@
     background: var(--accent-gold);
 }
 
+/* Feedback form structure and card blocks */
 .feedback-form {
     display: flex;
     flex-direction: column;
@@ -483,6 +512,7 @@
     color: var(--text-muted);
 }
 
+/* Feedback type radio options (Positive / Negative / Suggestion) */
 .feedback-type-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -551,7 +581,9 @@
     padding: 0.75rem 1.6rem;
 }
 
-/* ---- History section ---- */
+/* --------------------------------------------------------------------------
+   History panel — archived past events with club/student ratings, attendance, media thumbnails
+   -------------------------------------------------------------------------- */
 .history-section {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -580,12 +612,14 @@
     color: var(--text-muted);
 }
 
+/* History: list of archived event cards */
 .history-list {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
 }
 
+/* History card: cover, body, stats (club rating, students rating, attended), media thumbs */
 .history-card {
     display: grid;
     grid-template-columns: 220px 1fr;
@@ -672,6 +706,7 @@
     font-size: 0.95rem;
 }
 
+/* History card: stats row (club rating = gold, students rating = blue, attended) */
 .history-stats {
     display: flex;
     flex-wrap: wrap;
@@ -706,6 +741,7 @@
     color: var(--primary-blue);
 }
 
+/* History card: attached event media thumbnails */
 .history-media {
     display: flex;
     flex-direction: column;
@@ -733,7 +769,9 @@
     border: 1px solid var(--border-light);
 }
 
-/* ---- Done section ---- */
+/* --------------------------------------------------------------------------
+   Done panel — ended events awaiting review (rating, attendance, media upload, move to history)
+   -------------------------------------------------------------------------- */
 .done-section {
     background: var(--surface-white);
     border-radius: var(--radius-lg);
@@ -771,12 +809,14 @@
     font-size: 0.85rem;
 }
 
+/* Done: list of events needing review */
 .done-list {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
 
+/* Done card: event summary (cover, body) + review form (rating, attendance, media, submit) */
 .done-card {
     background: #ffffff;
     border-radius: var(--radius-lg);
@@ -867,6 +907,7 @@
     color: var(--text-muted);
 }
 
+/* Done card: review form area (how well it went, number attended, attach media, move to history) */
 .done-review {
     padding: 1.25rem 1.5rem 1.5rem;
     background: #f8f9fb;
@@ -897,14 +938,9 @@
     padding: 0.75rem 1.6rem;
 }
 
-/*
- . Mobile responsive styles for club dashboard
- . Adjusts layout and spacing for screens with a maximum width of 700px
- 
- . Reduces panel padding to 1.5rem for better space utilization on smaller screens  
- . Changes club home header from horizontal to vertical layout (column direction)
- . Aligns header content to the left for improved mobile UX
- */
+/* --------------------------------------------------------------------------
+   Responsive: small screens (max-width 700px) — panel padding, stacked layouts, full-width buttons
+   -------------------------------------------------------------------------- */
 @media (max-width: 700px) {
     .panel {
         padding: 1.5rem;
