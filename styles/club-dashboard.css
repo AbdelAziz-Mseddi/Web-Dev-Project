@@ -269,6 +269,156 @@
     padding: 0.75rem 1.6rem;
 }
 
+.feedback {
+    background: var(--surface-white);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.feedback-title {
+    margin: 0 0 0.35rem 0;
+    color: var(--text-main);
+}
+
+.feedback-subtitle {
+    margin: 0;
+    color: var(--text-muted);
+}
+
+.feedback-anon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(173, 157, 97, 0.12);
+    color: var(--olive-green);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.feedback-anon-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.feedback-card {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    background: #f9fafb;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.feedback-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.feedback-card-title {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-main);
+}
+
+.feedback-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.feedback-type-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.85rem;
+}
+
+.feedback-type {
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 0.95rem;
+    background: #ffffff;
+    display: grid;
+    gap: 0.35rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.feedback-type input {
+    accent-color: var(--accent-gold);
+}
+
+.feedback-type-label {
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.feedback-type-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.feedback-helper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.feedback-minimum {
+    font-weight: 600;
+    color: var(--olive-green);
+}
+
+.feedback-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.feedback-privacy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.feedback-privacy input {
+    accent-color: var(--accent-gold);
+}
+
+.feedback-submit {
+    padding: 0.75rem 1.6rem;
+}
+
 /*
  . Mobile responsive styles for club dashboard
  . Adjusts layout and spacing for screens with a maximum width of 700px
@@ -288,6 +438,15 @@
     }
 
     .event-create-submit {
+        width: 100%;
+        text-align: center;
+    }
+
+    .feedback {
+        padding: 1.5rem;
+    }
+
+    .feedback-submit {
         width: 100%;
         text-align: center;
     }

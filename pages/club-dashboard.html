@@ -142,7 +142,72 @@
         </section>
       </div>
       <div class="panel" data-panel="members">
-        FEEDBACK/SUGGESTIONS
+        <section class="feedback">
+          <div class="feedback-header">
+            <div>
+              <h2 class="feedback-title">Community Feedback</h2>
+              <p class="feedback-subtitle">Help the club improve. Your voice stays anonymous.</p>
+            </div>
+            <div class="feedback-anon">
+              <span class="feedback-anon-dot" aria-hidden="true"></span>
+              <span>Anonymous by default. We do not collect names or emails.</span>
+            </div>
+          </div>
+
+          <form class="feedback-form">
+            <div class="feedback-card">
+              <div class="feedback-card-header">
+                <h3 class="feedback-card-title">Choose your feedback type</h3>
+                <span class="feedback-note">Select one</span>
+              </div>
+              <div class="feedback-type-group" role="radiogroup" aria-label="Feedback type">
+                <label class="feedback-type">
+                  <input type="radio" name="feedback-type" value="positive" required>
+                  <span class="feedback-type-label">Positive</span>
+                  <span class="feedback-type-desc">Share what worked well.</span>
+                </label>
+                <label class="feedback-type">
+                  <input type="radio" name="feedback-type" value="negative">
+                  <span class="feedback-type-label">Negative</span>
+                  <span class="feedback-type-desc">Point out pain points.</span>
+                </label>
+                <label class="feedback-type">
+                  <input type="radio" name="feedback-type" value="suggestion">
+                  <span class="feedback-type-label">Suggestion</span>
+                  <span class="feedback-type-desc">Offer a new idea.</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="feedback-card">
+              <div class="feedback-card-header">
+                <h3 class="feedback-card-title">Share the details</h3>
+                <span class="feedback-note">Be specific if you can.</span>
+              </div>
+              <label class="form-label" for="feedback-message">Your message</label>
+              <textarea class="form-input form-textarea" id="feedback-message" name="feedback-message" rows="6" placeholder="Write a clear paragraph about your experience, suggestion, or concern." required></textarea>
+              <div class="feedback-helper">
+                <span>Tip: Mention the event or activity name if relevant.</span>
+                <span class="feedback-minimum">Minimum 40 characters.</span>
+              </div>
+            </div>
+
+            <div class="feedback-card">
+              <div class="feedback-card-header">
+                <h3 class="feedback-card-title">Attach an image (optional)</h3>
+                <span class="feedback-note">Screenshots help the team act faster.</span>
+              </div>
+              <div class="form-file">
+                <input class="form-input form-file-input" id="feedback-image" name="feedback-image" type="file" accept="image/*">
+                <span class="form-file-hint">JPG or PNG, up to 5MB.</span>
+              </div>
+            </div>
+
+            <div class="feedback-footer">
+              <button class="btn btn-gold feedback-submit" type="submit">Send Feedback</button>
+            </div>
+          </form>
+        </section>
       </div>
       <div class="panel" data-panel="history">
         HISTORY
