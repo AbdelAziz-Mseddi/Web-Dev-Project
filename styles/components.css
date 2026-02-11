@@ -13,7 +13,9 @@
     color: white;
 }
 
-.btn-gold:hover { opacity: 0.9; }
+.btn-gold:hover {
+    opacity: 0.9;
+}
 
 .search-bar {
     padding: 0.6rem 1rem;
@@ -36,71 +38,239 @@
 
 /*Calendar Component*/
 .calendar-section {
-    background: var(--surface-white);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-subtle);
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fc 100%);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 40px rgba(43, 62, 78, 0.08),
+        0 2px 8px rgba(43, 62, 78, 0.04);
     display: flex;
     flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.calendar-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            var(--primary-blue) 0%,
+            var(--accent-gold) 50%,
+            var(--deep-red) 100%);
+    opacity: 0.6;
 }
 
 .calendar-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(43, 62, 78, 0.06);
+}
+
+.calendar-title-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+}
+
+.calendar-month {
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.calendar-year {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.calendar-controls {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(43, 62, 78, 0.05);
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--primary-blue);
+}
+
+.icon-btn:hover {
+    background: var(--primary-blue);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(43, 62, 78, 0.2);
+}
+
+.icon-btn-today {
+    width: auto;
+    padding: 0 1.2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    /* Auto rows filling available space */
-    grid-auto-rows: 1fr; 
-    gap: 1px;
+    grid-auto-rows: 1fr;
+    gap: 8px;
     height: 100%;
 }
 
 .day-name {
     text-align: center;
-    font-weight: 600;
-    color: var(--text-muted);
-    padding-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--primary-blue);
+    padding: 1rem 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .calendar-day {
-    border: 1px solid #eee;
-    padding: 0.5rem;
-    min-height: 80px;
+    background: white;
+    border: 2px solid rgba(43, 62, 78, 0.06);
+    padding: 0.8rem;
+    min-height: 90px;
     position: relative;
-    border-radius: 4px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.calendar-day:hover:not(.muted) {
+    background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(43, 62, 78, 0.12);
+    border-color: var(--accent-gold);
+    z-index: 10;
+}
+
+.day-number {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: block;
 }
 
 .calendar-day.muted {
-    background-color: #f9f9f9;
-    color: #ccc;
+    background: rgba(43, 62, 78, 0.02);
+    border-color: transparent;
+}
+
+.calendar-day.muted .day-number {
+    color: #cbd5e0;
 }
 
 /* Highlight Current Day */
 .calendar-day.current {
-    background-color: rgba(43, 62, 78, 0.05);
-    border: 2px solid var(--primary-blue);
+    background: linear-gradient(135deg,
+            rgba(43, 62, 78, 0.08) 0%,
+            rgba(173, 157, 97, 0.08) 100%);
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 0 0 4px rgba(173, 157, 97, 0.1),
+        0 4px 16px rgba(43, 62, 78, 0.1);
+}
+
+.calendar-day.current .day-number {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+.calendar-day.current::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 8px;
+    height: 8px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(173, 157, 97, 0.6);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
 }
 
 /* Event Pills */
 .event-pill {
     display: block;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-top: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 8px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.pill-blue { background-color: var(--primary-blue); }
-.pill-gold { background-color: var(--accent-gold); }
-.pill-red { background-color: var(--deep-red); }
+.calendar-day:hover .event-pill {
+    transform: translateX(2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.pill-blue {
+    background: linear-gradient(135deg, #2b3e4e 0%, #3d5a73 100%);
+}
+
+.pill-gold {
+    background: linear-gradient(135deg, #ad9d61 0%, #c9b876 100%);
+}
+
+.pill-red {
+    background: linear-gradient(135deg, #820608 0%, #a50810 100%);
+}
+
+.calendar-day.has-event::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: var(--accent-gold);
+    border-radius: 50%;
+    opacity: 0.5;
+}
 
 /* Right Column Feed */
 .feed-scroll {
@@ -119,10 +289,10 @@
     gap: 1.2rem;
     align-items: center;
     cursor: pointer;
-    
+
     /* smoothness */
-    transition: 
-        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+    transition:
+        transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
         box-shadow 0.3s ease,
         border-color 0.3s ease;
     border: 1px solid transparent;
@@ -159,7 +329,8 @@
 
 /* Active/Click effect */
 .event-card:active {
-    transform: translateX(4px) scale(0.98); /* Slight "push in" feel */
+    transform: translateX(4px) scale(0.98);
+    /* Slight "push in" feel */
     transition: transform 0.1s ease;
 }
 
@@ -175,9 +346,17 @@
     color: white;
 }
 
-.badge-red { background-color: var(--deep-red); }
-.badge-gold { background-color: var(--accent-gold); }
-.badge-blue { background-color: var(--primary-blue); }
+.badge-red {
+    background-color: var(--deep-red);
+}
+
+.badge-gold {
+    background-color: var(--accent-gold);
+}
+
+.badge-blue {
+    background-color: var(--primary-blue);
+}
 
 .event-card .badge {
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -185,36 +364,6 @@
 
 .event-card:hover .badge {
     transform: scale(1.05);
-    filter: saturate(1.2); /* Makes colors slightly more vivid on hover */
-}
-/* Base state of a calendar day */
-.calendar-day {
-    position: relative;
-    padding: 0.8rem;
-    background-color: var(--surface-white);
-    border: 1px solid #f0f0f0;
-    cursor: pointer;
-    /* This tells CSS to animate changes over 0.25 seconds */
-    transition: 
-        background-color 0.25s ease, 
-        transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-        box-shadow 0.25s ease;
-    z-index: 1;
-}
-
-/* Hover state */
-.calendar-day:hover:not(.muted) {
-    background-color: #ffffff;
-    /* Lift the card slightly */
-    transform: translateY(-2px) scale(1.02);
-    /* Add a "glow" shadow */
-    box-shadow: 0 10px 20px rgba(43, 62, 78, 0.1);
-    /* Bring the hovered day to the front so shadow doesn't hide under neighbors */
-    z-index: 10;
-    border-color: var(--accent-gold);
-}
-
-.calendar-day:hover .event-pill {
-    filter: brightness(1.1);
-    transform: scale(1.05);
+    filter: saturate(1.2);
+    /* Makes colors slightly more vivid on hover */
 }

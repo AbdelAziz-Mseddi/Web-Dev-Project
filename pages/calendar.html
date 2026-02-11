@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="../styles/components.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
     <header class="main-header">
@@ -28,7 +30,7 @@
     </header>
 
     <main class="dashboard-container">
-        
+
         <div class="dashboard-header">
             <h1>Event Schedule</h1>
             <div class="search-filter-wrapper">
@@ -38,16 +40,30 @@
         </div>
 
         <div class="dashboard-grid">
-            
+
             <section class="calendar-section">
                 <div class="calendar-header">
-                    <h2>February 2026</h2>
+                    <div class="calendar-title-wrapper">
+                        <h2 class="calendar-month">February</h2>
+                        <span class="calendar-year">2026</span>
+                    </div>
                     <div class="calendar-controls">
-                        <button class="icon-btn">&lt;</button>
-                        <button class="icon-btn">&gt;</button>
+                        <button class="icon-btn" aria-label="Previous month">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <button class="icon-btn icon-btn-today">Today</button>
+                        <button class="icon-btn" aria-label="Next month">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
                     </div>
                 </div>
-                
+
                 <div class="calendar-grid">
                     <div class="day-name">Sun</div>
                     <div class="day-name">Mon</div>
@@ -57,52 +73,109 @@
                     <div class="day-name">Fri</div>
                     <div class="day-name">Sat</div>
 
-                    <div class="calendar-day muted">29</div>
-                    <div class="calendar-day muted">30</div>
-                    <div class="calendar-day muted">31</div>
-                    <div class="calendar-day">1</div>
-                    <div class="calendar-day">2
+                    <div class="calendar-day muted">
+                        <span class="day-number">29</span>
+                    </div>
+                    <div class="calendar-day muted">
+                        <span class="day-number">30</span>
+                    </div>
+                    <div class="calendar-day muted">
+                        <span class="day-number">31</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">1</span>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">2</span>
                         <span class="event-pill pill-blue">Basketball</span>
                     </div>
-                    <div class="calendar-day">3</div>
-                    <div class="calendar-day current">
-                        4
+                    <div class="calendar-day">
+                        <span class="day-number">3</span>
+                    </div>
+                    <div class="calendar-day current has-event">
+                        <span class="day-number">4</span>
                         <span class="event-pill pill-gold">Career Fair</span>
                     </div>
-                    <div class="calendar-day">5</div>
-                    <div class="calendar-day">6</div>
                     <div class="calendar-day">
-                        7
+                        <span class="day-number">5</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">6</span>
+                    </div>
+                    <div class="calendar-day has-event">
+                        <span class="day-number">7</span>
                         <span class="event-pill pill-red">Hackathon</span>
                     </div>
-                    <div class="calendar-day">8</div>
-                    <div class="calendar-day">9</div>
-                    <div class="calendar-day">10</div>
-                    <div class="calendar-day">11</div>
-                    <div class="calendar-day">12</div>
-                    <div class="calendar-day">13</div>
-                    <div class="calendar-day">14</div>
-                    <div class="calendar-day">15</div>
-                    <div class="calendar-day">16</div>
-                    <div class="calendar-day">17</div>
-                    <div class="calendar-day">18</div>
-                    <div class="calendar-day">19</div>
-                    <div class="calendar-day">20</div>
-                    <div class="calendar-day">21</div>
-                    <div class="calendar-day">22</div>
-                    <div class="calendar-day">23</div>
-                    <div class="calendar-day">24</div>
-                    <div class="calendar-day">25</div>
-                    <div class="calendar-day">26</div>
-                    <div class="calendar-day">27</div>
-                    <div class="calendar-day">28</div>
+                    <div class="calendar-day">
+                        <span class="day-number">8</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">9</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">10</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">11</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">12</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">13</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">14</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">15</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">16</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">17</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">18</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">19</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">20</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">21</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">22</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">23</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">24</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">25</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">26</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">27</span>
+                    </div>
+                    <div class="calendar-day">
+                        <span class="day-number">28</span>
+                    </div>
                 </div>
             </section>
 
             <aside class="feed-section">
                 <h3>Featured Events</h3>
                 <div class="feed-scroll">
-                    
+
                     <article class="event-card">
                         <div class="card-image placeholder-img"></div>
                         <div class="card-content">
@@ -139,31 +212,5 @@
         </div>
     </main>
 </body>
-<footer class="main-footer">
-    <div class="footer-container">
-        <div class="footer-brand">
-            <h3>UniEvents</h3>
-            <p>Managing campus life, one event at a time.</p>
-        </div>
 
-        <div class="footer-links">
-            <div class="link-group">
-                <h4>Platform</h4>
-                <a href="#">Explore</a>
-                <a href="#">Clubs</a>
-                <a href="#">Calendar</a>
-            </div>
-            <div class="link-group">
-                <h4>Support</h4>
-                <a href="#">Help Center</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Privacy</a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2026 UniEvents Project</p>
-    </div>
-</footer>
 </html>
