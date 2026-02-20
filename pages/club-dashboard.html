@@ -1,106 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <title>UniEvents | Club Dashboard</title>
-        <link rel="stylesheet" href="../styles/base.css">
-        <link rel="stylesheet" href="../styles/components.css">
-        <link rel="stylesheet" href="../styles/layout.css">
-        <link rel="stylesheet" href="../styles/page.css">
-        <link rel="stylesheet" href="../styles/club-dashboard.css">
-        <script src="../scripts/club-dashboard.js" defer></script>
-    </head>
-    <body>
-        <header class="main-header">
-        <div class="nav-container">
-            <div class="logo">UniEvents</div>
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link">Events</a>
-                <a href="calendar.html" class="nav-link">Calendar</a>
-                <a href="clubs.html" class="nav-link active">Clubs</a>
-            </nav>
-            <div class="header-actions">
-                <img class="profile-avatar" src="../assets/icons/search.svg">
-                <img class="profile-avatar" src="../assets/icons/notifications.svg">
-                <img class="profile-avatar" src="../assets/icons/user.svg">
-            </div>
+  <head>
+    <title>UniEvents | Club Dashboard</title>
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/components.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/page.css" />
+    <link rel="stylesheet" href="../styles/club-dashboard.css" />
+    <script src="../scripts/club-dashboard.js" defer></script>
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="nav-container">
+        <div class="logo">UniEvents</div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">Events</a>
+          <a href="calendar.html" class="nav-link">Calendar</a>
+          <a href="clubs.html" class="nav-link active">Clubs</a>
+        </nav>
+        <div class="header-actions">
+          <img class="profile-avatar" src="../assets/icons/search.svg" />
+          <img class="profile-avatar" src="../assets/icons/notifications.svg" />
+          <img class="profile-avatar" src="../assets/icons/user.svg" />
         </div>
+      </div>
     </header>
 
     <div class="dashboard-grid">
       <div class="sidebar">
         <div class="sidebar_link" data-role="public" data-target="profile">
-          <img src="../assets/icons/home.svg">
+          <img src="../assets/icons/home.svg" />
           <div>Profile</div>
         </div>
         <div class="sidebar_link" data-role="public" data-target="community">
-          <img src="../assets/icons/members.svg">
+          <img src="../assets/icons/members.svg" />
           <div>Community Feedback</div>
         </div>
         <div class="sidebar_link" data-role="public" data-target="history">
-          <img src="../assets/icons/history.svg">
+          <img src="../assets/icons/history.svg" />
           <div>History</div>
         </div>
         <div class="sidebar_link" data-role="admin" data-target="pending">
-          <img src="../assets/icons/pending.svg">
+          <img src="../assets/icons/pending.svg" />
           <div>Pending</div>
         </div>
         <div class="sidebar_link" data-role="admin" data-target="done">
-          <img src="../assets/icons/done.svg">
+          <img src="../assets/icons/done.svg" />
           <div>Done</div>
         </div>
         <div class="sidebar_link" data-role="admin" data-target="create">
-          <img src="../assets/icons/create_event.svg">
+          <img src="../assets/icons/create_event.svg" />
           <div>Create Event</div>
         </div>
       </div>
 
-        <div class="panel" data-panel="profile">
-          <section class="club-home">
-            <div class="club-banner" aria-label="Club banner"></div>
-            <div class="club-home-header">
-              <div class="club-logo" aria-hidden="true">CU</div>
-              <div class="club-home-title">
-                <h1 class="club-name">Cultural Union</h1>
-                <div class="club-tags" aria-label="Club tags">
-                  <span class="club-tag">Cultural</span>
-                  <span class="club-tag">Art</span>
-                  <span class="club-tag">Community</span>
-                </div>
+      <div class="panel" data-panel="profile">
+        <section class="club-home">
+          <div class="club-banner" aria-label="Club banner"></div>
+          <div class="club-home-header">
+            <div class="club-logo" aria-hidden="true">CU</div>
+            <div class="club-home-title">
+              <h1 class="club-name">Cultural Union</h1>
+              <div class="club-tags" aria-label="Club tags">
+                <span class="club-tag">Cultural</span>
+                <span class="club-tag">Art</span>
+                <span class="club-tag">Community</span>
               </div>
             </div>
+          </div>
 
-            <p class="club-description">
-              The Cultural Union celebrates diversity on campus through workshops,
-              showcases, and collaborations with local communities. We host weekly
-              gatherings, language exchanges, and seasonal festivals that bring
-              students together across disciplines.
-            </p>
+          <p class="club-description">
+            The Cultural Union celebrates diversity on campus through workshops,
+            showcases, and collaborations with local communities. We host weekly
+            gatherings, language exchanges, and seasonal festivals that bring
+            students together across disciplines.
+          </p>
 
-            <div class="club-meta-grid">
-              <div class="club-meta-card">
-                <div class="club-meta-label">Members</div>
-                <div class="club-meta-value">148</div>
-              </div>
-              <div class="club-meta-card">
-                <div class="club-meta-label">Premises</div>
-                <div class="club-meta-value">Student Center, Room B204</div>
-              </div>
+          <div class="club-meta-grid">
+            <div class="club-meta-card">
+              <div class="club-meta-label">Members</div>
+              <div class="club-meta-value">148</div>
             </div>
-          </section>
+            <div class="club-meta-card">
+              <div class="club-meta-label">Premises</div>
+              <div class="club-meta-value">Student Center, Room B204</div>
+            </div>
+          </div>
+        </section>
       </div>
       <div class="panel" data-panel="pending">
         <section class="pending">
           <div class="pending-header">
             <div>
               <h2 class="pending-title">Pending Events</h2>
-              <p class="pending-subtitle">These events are waiting for administrator approval.</p>
+              <p class="pending-subtitle">
+                These events are waiting for administrator approval.
+              </p>
             </div>
             <span class="pending-status">3 awaiting review</span>
           </div>
 
           <div class="pending-list">
             <article class="pending-card">
-              <div class="pending-cover" data-theme="night" aria-label="Culture Night cover">
+              <div
+                class="pending-cover"
+                data-theme="night"
+                aria-label="Culture Night cover"
+              >
                 <span class="pending-cover-label">Cover photo</span>
               </div>
               <div class="pending-body">
@@ -114,12 +120,20 @@
                   <span class="club-tag">Festival</span>
                   <span class="club-tag">Music</span>
                 </div>
-                <p class="pending-description">An evening showcase of student performances, regional food stalls, and storytelling. Includes a short welcome from the club board and guest artists from the community.</p>
+                <p class="pending-description">
+                  An evening showcase of student performances, regional food
+                  stalls, and storytelling. Includes a short welcome from the
+                  club board and guest artists from the community.
+                </p>
               </div>
             </article>
 
             <article class="pending-card">
-              <div class="pending-cover" data-theme="art" aria-label="Global Art Workshop cover">
+              <div
+                class="pending-cover"
+                data-theme="art"
+                aria-label="Global Art Workshop cover"
+              >
                 <span class="pending-cover-label">Cover photo</span>
               </div>
               <div class="pending-body">
@@ -133,12 +147,20 @@
                   <span class="club-tag">Workshop</span>
                   <span class="club-tag">Hands-on</span>
                 </div>
-                <p class="pending-description">A hands-on workshop featuring printmaking, collage, and textile crafts inspired by global traditions. Materials are provided for the first 60 attendees.</p>
+                <p class="pending-description">
+                  A hands-on workshop featuring printmaking, collage, and
+                  textile crafts inspired by global traditions. Materials are
+                  provided for the first 60 attendees.
+                </p>
               </div>
             </article>
 
             <article class="pending-card">
-              <div class="pending-cover" data-theme="story" aria-label="Community Story Circle cover">
+              <div
+                class="pending-cover"
+                data-theme="story"
+                aria-label="Community Story Circle cover"
+              >
                 <span class="pending-cover-label">Cover photo</span>
               </div>
               <div class="pending-body">
@@ -152,7 +174,11 @@
                   <span class="club-tag">Dialogue</span>
                   <span class="club-tag">Campus</span>
                 </div>
-                <p class="pending-description">A moderated dialogue circle focused on cultural identity and belonging. Students can share short stories in a relaxed, supportive environment.</p>
+                <p class="pending-description">
+                  A moderated dialogue circle focused on cultural identity and
+                  belonging. Students can share short stories in a relaxed,
+                  supportive environment.
+                </p>
               </div>
             </article>
           </div>
@@ -162,52 +188,125 @@
         <section class="event-create">
           <div class="event-create-header">
             <h2 class="event-create-title">Create Event</h2>
-            <p class="event-create-subtitle">Share the details below to publish a new event.</p>
+            <p class="event-create-subtitle">
+              Share the details below to publish a new event.
+            </p>
           </div>
 
           <form class="event-create-form">
             <div class="form-grid">
               <div class="form-field">
                 <label class="form-label" for="event-title">Event Title</label>
-                <input class="form-input" id="event-title" name="event-title" type="text" placeholder="e.g., Culture Night" required>
+                <input
+                  class="form-input"
+                  id="event-title"
+                  name="event-title"
+                  type="text"
+                  placeholder="e.g., Culture Night"
+                  required
+                />
               </div>
               <div class="form-field">
                 <label class="form-label" for="event-tags">Tags</label>
-                <input class="form-input" id="event-tags" name="event-tags" type="text" placeholder="Cultural, Festival, Music" required>
+                <input
+                  class="form-input"
+                  id="event-tags"
+                  name="event-tags"
+                  type="text"
+                  placeholder="Cultural, Festival, Music"
+                  required
+                />
               </div>
               <div class="form-field">
                 <label class="form-label" for="event-date">Event Date</label>
-                <input class="form-input" id="event-date" name="event-date" type="date" required>
+                <input
+                  class="form-input"
+                  id="event-date"
+                  name="event-date"
+                  type="date"
+                  required
+                />
               </div>
               <div class="form-field form-field-range">
                 <label class="form-label">Time Span</label>
                 <div class="form-range">
-                  <input class="form-input" aria-label="Start time" name="event-start" type="time" required>
+                  <input
+                    class="form-input"
+                    aria-label="Start time"
+                    name="event-start"
+                    type="time"
+                    required
+                  />
                   <span class="form-range-divider">to</span>
-                  <input class="form-input" aria-label="End time" name="event-end" type="time" required>
+                  <input
+                    class="form-input"
+                    aria-label="End time"
+                    name="event-end"
+                    type="time"
+                    required
+                  />
                 </div>
               </div>
               <div class="form-field">
-                <label class="form-label" for="event-places">Available Places</label>
-                <input class="form-input" id="event-places" name="event-places" type="number" min="1" placeholder="120" required>
+                <label class="form-label" for="event-places"
+                  >Available Places</label
+                >
+                <input
+                  class="form-input"
+                  id="event-places"
+                  name="event-places"
+                  type="number"
+                  min="1"
+                  placeholder="120"
+                  required
+                />
               </div>
               <div class="form-field">
                 <label class="form-label" for="event-location">Location</label>
-                <input class="form-input" id="event-location" name="event-location" type="text" placeholder="Main Auditorium" required>
+                <input
+                  class="form-input"
+                  id="event-location"
+                  name="event-location"
+                  type="text"
+                  placeholder="Main Auditorium"
+                  required
+                />
               </div>
               <div class="form-field form-field-wide">
-                <label class="form-label" for="event-description">Description</label>
-                <textarea class="form-input form-textarea" id="event-description" name="event-description" rows="5" placeholder="Describe the event format, speakers, and what attendees should expect." required></textarea>
+                <label class="form-label" for="event-description"
+                  >Description</label
+                >
+                <textarea
+                  class="form-input form-textarea"
+                  id="event-description"
+                  name="event-description"
+                  rows="5"
+                  placeholder="Describe the event format, speakers, and what attendees should expect."
+                  required
+                ></textarea>
               </div>
               <div class="form-field form-field-wide">
-                <label class="form-label" for="event-cover">Cover Photo / Poster</label>
+                <label class="form-label" for="event-cover"
+                  >Cover Photo / Poster</label
+                >
                 <div class="form-file">
-                  <input class="form-input form-file-input" id="event-cover" name="event-cover" type="file" accept="image/*" required>
-                  <span class="form-file-hint">Upload JPG or PNG (max 5MB).</span>
+                  <input
+                    class="form-input form-file-input"
+                    id="event-cover"
+                    name="event-cover"
+                    type="file"
+                    accept="image/*"
+                    required
+                  />
+                  <span class="form-file-hint"
+                    >Upload JPG or PNG (max 5MB).</span
+                  >
                 </div>
               </div>
             </div>
-            <button class="btn btn-gold event-create-submit" type="submit">Suggest Event</button>
+            <button class="btn btn-gold event-create-submit" type="submit">
+              Suggest Event
+            </button>
           </form>
         </section>
       </div>
@@ -216,7 +315,10 @@
           <div class="feedback-header">
             <div>
               <h2 class="feedback-title">Community Feedback</h2>
-              <p class="feedback-subtitle">Rate a past event from the club’s history. You can add a message. Feedback is anonymous.</p>
+              <p class="feedback-subtitle">
+                Rate a past event from the club’s history. You can add a
+                message. Feedback is anonymous.
+              </p>
             </div>
           </div>
 
@@ -227,7 +329,13 @@
                 <span class="feedback-note">From history</span>
               </div>
               <label class="form-label" for="feedback-event">Event</label>
-              <select class="form-input" id="feedback-event" name="feedback-event" required aria-label="Choose a past event">
+              <select
+                class="form-input"
+                id="feedback-event"
+                name="feedback-event"
+                required
+                aria-label="Choose a past event"
+              >
                 <option value="">Choose an event…</option>
                 <option value="culture-night">Culture Night</option>
                 <option value="global-art-workshop">Global Art Workshop</option>
@@ -239,8 +347,21 @@
                 <h3 class="feedback-card-title">Your rating</h3>
                 <span class="feedback-note">Required</span>
               </div>
-              <label class="form-label" for="feedback-rating">How would you rate this event? (0–5)</label>
-              <input class="form-input" id="feedback-rating" name="feedback-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
+              <label class="form-label" for="feedback-rating"
+                >How would you rate this event? (0–5)</label
+              >
+              <input
+                class="form-input"
+                id="feedback-rating"
+                name="feedback-rating"
+                type="number"
+                min="0"
+                max="5"
+                step="0.5"
+                placeholder="0–5"
+                required
+                aria-label="Rate from 0 to 5"
+              />
             </div>
 
             <div class="feedback-card">
@@ -248,12 +369,22 @@
                 <h3 class="feedback-card-title">Message (optional)</h3>
                 <span class="feedback-note">Add details if you like</span>
               </div>
-              <label class="form-label" for="feedback-message">Your message</label>
-              <textarea class="form-input form-textarea" id="feedback-message" name="feedback-message" rows="4" placeholder="Share more about your experience—what you liked, what could be better, or suggestions for next time."></textarea>
+              <label class="form-label" for="feedback-message"
+                >Your message</label
+              >
+              <textarea
+                class="form-input form-textarea"
+                id="feedback-message"
+                name="feedback-message"
+                rows="4"
+                placeholder="Share more about your experience—what you liked, what could be better, or suggestions for next time."
+              ></textarea>
             </div>
 
             <div class="feedback-footer">
-              <button class="btn btn-gold feedback-submit" type="submit">Submit rating</button>
+              <button class="btn btn-gold feedback-submit" type="submit">
+                Submit rating
+              </button>
             </div>
           </form>
         </section>
@@ -263,13 +394,19 @@
           <div class="history-header">
             <div>
               <h2 class="history-title">History</h2>
-              <p class="history-subtitle">Past events that have been reviewed and archived.</p>
+              <p class="history-subtitle">
+                Past events that have been reviewed and archived.
+              </p>
             </div>
           </div>
 
           <div class="history-list">
             <article class="history-card">
-              <div class="history-cover" data-theme="night" aria-label="Culture Night cover">
+              <div
+                class="history-cover"
+                data-theme="night"
+                aria-label="Culture Night cover"
+              >
                 <span class="history-cover-label">Past event</span>
               </div>
               <div class="history-body">
@@ -283,15 +420,23 @@
                   <span class="club-tag">Festival</span>
                   <span class="club-tag">Music</span>
                 </div>
-                <p class="history-description">An evening showcase of student performances, regional food stalls, and storytelling.</p>
+                <p class="history-description">
+                  An evening showcase of student performances, regional food
+                  stalls, and storytelling.
+                </p>
                 <div class="history-stats">
                   <div class="history-stat">
                     <span class="history-stat-label">Club rating</span>
-                    <span class="history-stat-value history-rating">4.5 / 5</span>
+                    <span class="history-stat-value history-rating"
+                      >4.5 / 5</span
+                    >
                   </div>
                   <div class="history-stat">
                     <span class="history-stat-label">Students' rating</span>
-                    <span class="history-stat-value history-rating history-rating-students">4.2 / 5</span>
+                    <span
+                      class="history-stat-value history-rating history-rating-students"
+                      >4.2 / 5</span
+                    >
                   </div>
                   <div class="history-stat">
                     <span class="history-stat-label">Attended</span>
@@ -310,7 +455,11 @@
             </article>
 
             <article class="history-card">
-              <div class="history-cover" data-theme="art" aria-label="Global Art Workshop cover">
+              <div
+                class="history-cover"
+                data-theme="art"
+                aria-label="Global Art Workshop cover"
+              >
                 <span class="history-cover-label">Past event</span>
               </div>
               <div class="history-body">
@@ -323,7 +472,10 @@
                   <span class="club-tag">Art</span>
                   <span class="club-tag">Workshop</span>
                 </div>
-                <p class="history-description">A hands-on workshop featuring printmaking, collage, and textile crafts.</p>
+                <p class="history-description">
+                  A hands-on workshop featuring printmaking, collage, and
+                  textile crafts.
+                </p>
                 <div class="history-stats">
                   <div class="history-stat">
                     <span class="history-stat-label">Club rating</span>
@@ -331,7 +483,10 @@
                   </div>
                   <div class="history-stat">
                     <span class="history-stat-label">Students' rating</span>
-                    <span class="history-stat-value history-rating history-rating-students">4.8 / 5</span>
+                    <span
+                      class="history-stat-value history-rating history-rating-students"
+                      >4.8 / 5</span
+                    >
                   </div>
                   <div class="history-stat">
                     <span class="history-stat-label">Attended</span>
@@ -354,7 +509,10 @@
           <div class="done-header">
             <div>
               <h2 class="done-title">Done</h2>
-              <p class="done-subtitle">Events that have ended. Rate them, add attendance and media, then move to history.</p>
+              <p class="done-subtitle">
+                Events that have ended. Rate them, add attendance and media,
+                then move to history.
+              </p>
             </div>
             <span class="done-status">2 awaiting review</span>
           </div>
@@ -362,7 +520,11 @@
           <div class="done-list">
             <article class="done-card">
               <div class="done-event">
-                <div class="done-cover" data-theme="story" aria-label="Community Story Circle cover">
+                <div
+                  class="done-cover"
+                  data-theme="story"
+                  aria-label="Community Story Circle cover"
+                >
                   <span class="done-cover-label">Ended</span>
                 </div>
                 <div class="done-event-body">
@@ -375,7 +537,10 @@
                     <span class="club-tag">Community</span>
                     <span class="club-tag">Dialogue</span>
                   </div>
-                  <p class="done-description">A moderated dialogue circle focused on cultural identity and belonging.</p>
+                  <p class="done-description">
+                    A moderated dialogue circle focused on cultural identity and
+                    belonging.
+                  </p>
                 </div>
               </div>
               <div class="done-review">
@@ -383,29 +548,70 @@
                 <form class="done-review-form">
                   <div class="done-form-row">
                     <div class="form-field">
-                      <label class="form-label" for="done-rating-1">How well did it go? (0–5)</label>
-                      <input class="form-input" id="done-rating-1" name="done-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
+                      <label class="form-label" for="done-rating-1"
+                        >How well did it go? (0–5)</label
+                      >
+                      <input
+                        class="form-input"
+                        id="done-rating-1"
+                        name="done-rating"
+                        type="number"
+                        min="0"
+                        max="5"
+                        step="0.5"
+                        placeholder="0–5"
+                        required
+                        aria-label="Rate from 0 to 5"
+                      />
                     </div>
                     <div class="form-field">
-                      <label class="form-label" for="done-attendance-1">Number attended</label>
-                      <input class="form-input" id="done-attendance-1" name="done-attendance" type="number" min="0" placeholder="e.g. 45" required>
+                      <label class="form-label" for="done-attendance-1"
+                        >Number attended</label
+                      >
+                      <input
+                        class="form-input"
+                        id="done-attendance-1"
+                        name="done-attendance"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 45"
+                        required
+                      />
                     </div>
                   </div>
                   <div class="form-field form-field-wide">
-                    <label class="form-label" for="done-media-1">Attach event media (photos / videos)</label>
+                    <label class="form-label" for="done-media-1"
+                      >Attach event media (photos / videos)</label
+                    >
                     <div class="form-file">
-                      <input class="form-input form-file-input" id="done-media-1" name="done-media" type="file" accept="image/*,video/*" multiple>
-                      <span class="form-file-hint">Images or videos from the event. Multiple files allowed.</span>
+                      <input
+                        class="form-input form-file-input"
+                        id="done-media-1"
+                        name="done-media"
+                        type="file"
+                        accept="image/*,video/*"
+                        multiple
+                      />
+                      <span class="form-file-hint"
+                        >Images or videos from the event. Multiple files
+                        allowed.</span
+                      >
                     </div>
                   </div>
-                  <button class="btn btn-gold done-submit" type="submit">Move to history</button>
+                  <button class="btn btn-gold done-submit" type="submit">
+                    Move to history
+                  </button>
                 </form>
               </div>
             </article>
 
             <article class="done-card">
               <div class="done-event">
-                <div class="done-cover" data-theme="night" aria-label="Open Mic Night cover">
+                <div
+                  class="done-cover"
+                  data-theme="night"
+                  aria-label="Open Mic Night cover"
+                >
                   <span class="done-cover-label">Ended</span>
                 </div>
                 <div class="done-event-body">
@@ -418,7 +624,9 @@
                     <span class="club-tag">Music</span>
                     <span class="club-tag">Performance</span>
                   </div>
-                  <p class="done-description">An open stage for music, poetry, and short performances.</p>
+                  <p class="done-description">
+                    An open stage for music, poetry, and short performances.
+                  </p>
                 </div>
               </div>
               <div class="done-review">
@@ -426,22 +634,59 @@
                 <form class="done-review-form">
                   <div class="done-form-row">
                     <div class="form-field">
-                      <label class="form-label" for="done-rating-2">How well did it go? (0–5)</label>
-                      <input class="form-input" id="done-rating-2" name="done-rating" type="number" min="0" max="5" step="0.5" placeholder="0–5" required aria-label="Rate from 0 to 5">
+                      <label class="form-label" for="done-rating-2"
+                        >How well did it go? (0–5)</label
+                      >
+                      <input
+                        class="form-input"
+                        id="done-rating-2"
+                        name="done-rating"
+                        type="number"
+                        min="0"
+                        max="5"
+                        step="0.5"
+                        placeholder="0–5"
+                        required
+                        aria-label="Rate from 0 to 5"
+                      />
                     </div>
                     <div class="form-field">
-                      <label class="form-label" for="done-attendance-2">Number attended</label>
-                      <input class="form-input" id="done-attendance-2" name="done-attendance" type="number" min="0" placeholder="e.g. 45" required>
+                      <label class="form-label" for="done-attendance-2"
+                        >Number attended</label
+                      >
+                      <input
+                        class="form-input"
+                        id="done-attendance-2"
+                        name="done-attendance"
+                        type="number"
+                        min="0"
+                        placeholder="e.g. 45"
+                        required
+                      />
                     </div>
                   </div>
                   <div class="form-field form-field-wide">
-                    <label class="form-label" for="done-media-2">Attach event media (photos / videos)</label>
+                    <label class="form-label" for="done-media-2"
+                      >Attach event media (photos / videos)</label
+                    >
                     <div class="form-file">
-                      <input class="form-input form-file-input" id="done-media-2" name="done-media" type="file" accept="image/*,video/*" multiple>
-                      <span class="form-file-hint">Images or videos from the event. Multiple files allowed.</span>
+                      <input
+                        class="form-input form-file-input"
+                        id="done-media-2"
+                        name="done-media"
+                        type="file"
+                        accept="image/*,video/*"
+                        multiple
+                      />
+                      <span class="form-file-hint"
+                        >Images or videos from the event. Multiple files
+                        allowed.</span
+                      >
                     </div>
                   </div>
-                  <button class="btn btn-gold done-submit" type="submit">Move to history</button>
+                  <button class="btn btn-gold done-submit" type="submit">
+                    Move to history
+                  </button>
                 </form>
               </div>
             </article>
@@ -449,7 +694,5 @@
         </section>
       </div>
     </div>
-
-
-    </body>
+  </body>
 </html>

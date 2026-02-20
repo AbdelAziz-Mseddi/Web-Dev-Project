@@ -1,216 +1,227 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UniEvents | Calendar</title>
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="../styles/layout.css">
-    <link rel="stylesheet" href="../styles/components.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/components.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
-
+  <body>
     <header class="main-header">
-        <div class="nav-container">
-            <div class="logo">UniEvents</div>
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link">Events</a>
-                <a href="calendar.html" class="nav-link active">Calendar</a>
-                <a href="clubs.html" class="nav-link">Clubs</a>
-            </nav>
-            <div class="header-actions">
-                <img class="profile-avatar" src="../assets/icons/search.svg">
-                <img class="profile-avatar" src="../assets/icons/notifications.svg">
-                <img class="profile-avatar" src="../assets/icons/user.svg">
-            </div>
+      <div class="nav-container">
+        <div class="logo">UniEvents</div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">Events</a>
+          <a href="calendar.html" class="nav-link active">Calendar</a>
+          <a href="clubs.html" class="nav-link">Clubs</a>
+        </nav>
+        <div class="header-actions">
+          <img class="profile-avatar" src="../assets/icons/search.svg" />
+          <img class="profile-avatar" src="../assets/icons/notifications.svg" />
+          <img class="profile-avatar" src="../assets/icons/user.svg" />
         </div>
+      </div>
     </header>
 
     <main class="dashboard-container">
+      <div class="dashboard-header">
+        <h1>Event Schedule</h1>
+        <div class="search-filter-wrapper">
+          <input
+            type="text"
+            class="search-bar"
+            placeholder="Search events, clubs..."
+          />
+          <button class="btn btn-gold">Filter</button>
+        </div>
+      </div>
 
-        <div class="dashboard-header">
-            <h1>Event Schedule</h1>
-            <div class="search-filter-wrapper">
-                <input type="text" class="search-bar" placeholder="Search events, clubs...">
-                <button class="btn btn-gold">Filter</button>
+      <div class="dashboard-grid">
+        <section class="calendar-section">
+          <div class="calendar-header">
+            <div class="calendar-title-wrapper">
+              <h2 class="calendar-month">February</h2>
+              <span class="calendar-year">2026</span>
             </div>
-        </div>
+            <div class="calendar-controls">
+              <button class="icon-btn" aria-label="Previous month">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+              </button>
+              <button class="icon-btn icon-btn-today">Today</button>
+              <button class="icon-btn" aria-label="Next month">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+          </div>
 
-        <div class="dashboard-grid">
+          <div class="calendar-grid">
+            <div class="day-name">Sun</div>
+            <div class="day-name">Mon</div>
+            <div class="day-name">Tue</div>
+            <div class="day-name">Wed</div>
+            <div class="day-name">Thu</div>
+            <div class="day-name">Fri</div>
+            <div class="day-name">Sat</div>
 
-            <section class="calendar-section">
-                <div class="calendar-header">
-                    <div class="calendar-title-wrapper">
-                        <h2 class="calendar-month">February</h2>
-                        <span class="calendar-year">2026</span>
-                    </div>
-                    <div class="calendar-controls">
-                        <button class="icon-btn" aria-label="Previous month">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="15 18 9 12 15 6"></polyline>
-                            </svg>
-                        </button>
-                        <button class="icon-btn icon-btn-today">Today</button>
-                        <button class="icon-btn" aria-label="Next month">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2">
-                                <polyline points="9 18 15 12 9 6"></polyline>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+            <div class="calendar-day muted">
+              <span class="day-number">29</span>
+            </div>
+            <div class="calendar-day muted">
+              <span class="day-number">30</span>
+            </div>
+            <div class="calendar-day muted">
+              <span class="day-number">31</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">1</span>
+            </div>
+            <div class="calendar-day has-event">
+              <span class="day-number">2</span>
+              <span class="event-pill pill-blue">Basketball</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">3</span>
+            </div>
+            <div class="calendar-day current has-event">
+              <span class="day-number">4</span>
+              <span class="event-pill pill-gold">Career Fair</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">5</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">6</span>
+            </div>
+            <div class="calendar-day has-event">
+              <span class="day-number">7</span>
+              <span class="event-pill pill-red">Hackathon</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">8</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">9</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">10</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">11</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">12</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">13</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">14</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">15</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">16</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">17</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">18</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">19</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">20</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">21</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">22</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">23</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">24</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">25</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">26</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">27</span>
+            </div>
+            <div class="calendar-day">
+              <span class="day-number">28</span>
+            </div>
+          </div>
+        </section>
 
-                <div class="calendar-grid">
-                    <div class="day-name">Sun</div>
-                    <div class="day-name">Mon</div>
-                    <div class="day-name">Tue</div>
-                    <div class="day-name">Wed</div>
-                    <div class="day-name">Thu</div>
-                    <div class="day-name">Fri</div>
-                    <div class="day-name">Sat</div>
+        <aside class="feed-section">
+          <h3>Featured Events</h3>
+          <div class="feed-scroll">
+            <article class="event-card">
+              <div class="card-image placeholder-img"></div>
+              <div class="card-content">
+                <span class="badge badge-red">Live Now</span>
+                <h4>Tech Talk: AI Futures</h4>
+                <p class="meta">📍 Hall • 10:00 AM</p>
+                <p class="attendees">👥 120 attending</p>
+              </div>
+            </article>
 
-                    <div class="calendar-day muted">
-                        <span class="day-number">29</span>
-                    </div>
-                    <div class="calendar-day muted">
-                        <span class="day-number">30</span>
-                    </div>
-                    <div class="calendar-day muted">
-                        <span class="day-number">31</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">1</span>
-                    </div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">2</span>
-                        <span class="event-pill pill-blue">Basketball</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">3</span>
-                    </div>
-                    <div class="calendar-day current has-event">
-                        <span class="day-number">4</span>
-                        <span class="event-pill pill-gold">Career Fair</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">5</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">6</span>
-                    </div>
-                    <div class="calendar-day has-event">
-                        <span class="day-number">7</span>
-                        <span class="event-pill pill-red">Hackathon</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">8</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">9</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">10</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">11</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">12</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">13</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">14</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">15</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">16</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">17</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">18</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">19</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">20</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">21</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">22</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">23</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">24</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">25</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">26</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">27</span>
-                    </div>
-                    <div class="calendar-day">
-                        <span class="day-number">28</span>
-                    </div>
-                </div>
-            </section>
+            <article class="event-card">
+              <div class="card-image placeholder-img"></div>
+              <div class="card-content">
+                <span class="badge badge-gold">Premium</span>
+                <h4>Alumni Gala</h4>
+                <p class="meta">📍 Main Quad • Feb 15, 2026 • 20:00 PM</p>
+                <p class="attendees">👥 350 attending</p>
+              </div>
+            </article>
 
-            <aside class="feed-section">
-                <h3>Featured Events</h3>
-                <div class="feed-scroll">
-
-                    <article class="event-card">
-                        <div class="card-image placeholder-img"></div>
-                        <div class="card-content">
-                            <span class="badge badge-red">Live Now</span>
-                            <h4>Tech Talk: AI Futures</h4>
-                            <p class="meta">📍 Hall • 10:00 AM</p>
-                            <p class="attendees">👥 120 attending</p>
-                        </div>
-                    </article>
-
-                    <article class="event-card">
-                        <div class="card-image placeholder-img"></div>
-                        <div class="card-content">
-                            <span class="badge badge-gold">Premium</span>
-                            <h4>Alumni Gala</h4>
-                            <p class="meta">📍 Main Quad • Feb 15, 2026 • 20:00 PM </p>
-                            <p class="attendees">👥 350 attending</p>
-                        </div>
-                    </article>
-
-                    <article class="event-card">
-                        <div class="card-image placeholder-img"></div>
-                        <div class="card-content">
-                            <span class="badge badge-blue">Cultural</span>
-                            <h4>Art Exhibition</h4>
-                            <p class="meta">📍 Gallery • Mar 20, 2026 • 8:00 AM</p>
-                            <p class="attendees">👥 45 attending</p>
-                        </div>
-                    </article>
-
-                </div>
-            </aside>
-
-        </div>
+            <article class="event-card">
+              <div class="card-image placeholder-img"></div>
+              <div class="card-content">
+                <span class="badge badge-blue">Cultural</span>
+                <h4>Art Exhibition</h4>
+                <p class="meta">📍 Gallery • Mar 20, 2026 • 8:00 AM</p>
+                <p class="attendees">👥 45 attending</p>
+              </div>
+            </article>
+          </div>
+        </aside>
+      </div>
     </main>
-</body>
-
+  </body>
 </html>

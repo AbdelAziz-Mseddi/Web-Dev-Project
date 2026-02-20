@@ -1,124 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Discover Events | UniEvents</title>
-    <link rel="stylesheet" href="../styles/base.css">
-    <link rel="stylesheet" href="../styles/components.css">
-    <link rel="stylesheet" href="../styles/layout.css">
-    <link rel="stylesheet" href="../styles/homepage.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/components.css" />
+    <link rel="stylesheet" href="../styles/layout.css" />
+    <link rel="stylesheet" href="../styles/homepage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <header class="main-header">
-      <nav class="nav-container">
-          <div class="logo">
-              <i class="fa-solid fa-calendar-check"></i> UniEvents
-          </div>
-          
-          <ul class="main-nav">
-              <li><a href="#" class="active">Events</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="#">Clubs</a></li>
-          </ul>
-
-          <div class="nav-icons">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <div class="notification-wrapper">
-                  <i class="fa-solid fa-bell"></i>
-                  <span class="notification-dot"></span>
-              </div>
-              <i class="fa-regular fa-user user-icon"></i>
-          </div>
-      </nav>
-  </header>
+      <div class="nav-container">
+        <div class="logo">UniEvents</div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link active">Events</a>
+          <a href="calendar.html" class="nav-link">Calendar</a>
+          <a href="clubs.html" class="nav-link">Clubs</a>
+        </nav>
+        <div class="header-actions">
+          <img class="profile-avatar" src="../assets/icons/search.svg" />
+          <img class="profile-avatar" src="../assets/icons/notifications.svg" />
+          <img class="profile-avatar" src="../assets/icons/user.svg" />
+        </div>
+      </div>
+    </header>
 
     <main class="dashboard-container">
-        <section class="hero-section">
-            <h1>Discover Campus <span>Events</span></h1>
-            <p>Find exciting events, connect with clubs, and make the most of your university experience.</p>
-        </section>
+      <section class="hero-section">
+        <h1>Discover Campus <span>Events</span></h1>
+        <p>
+          Find exciting events, connect with clubs, and make the most of your
+          university experience.
+        </p>
+      </section>
 
-        <section class="featured-section">
-            <h2 class="section-title">✨ Featured Events</h2>
-            <div class="featured-grid">
-                <div class="event-card-featured">
-                    <img src="../assets/images/event_pic.jpeg" class="featured-bg">
-                    <div class="featured-overlay">
-                        <div class="club-tag">
-                            <img src="../assets/images/logo_pic.webp" alt="logo"> IEEE
-                        </div>
-                        <h3>Data Overflow</h3>
-                    </div>
-                </div>
-                <div class="event-card-featured">
-                    <img src="../assets/images/event_pic.jpeg" class="featured-bg">
-                    <div class="featured-overlay">
-                        <div class="club-tag">
-                            <img src="../assets/images/logo_pic.webp" alt="logo"> ACM
-                        </div>
-                        <h3>Winter Cup 8.0</h3>
-                    </div>
-                </div>
+      <section class="featured-section">
+        <h2 class="section-title">✨ Featured Events</h2>
+        <div class="featured-grid">
+          <div class="event-card-featured">
+            <img src="../assets/images/event_pic.jpeg" class="featured-bg" />
+            <div class="featured-overlay">
+              <div class="club-tag">
+                <img src="../assets/images/logo_pic.webp" alt="logo" /> IEEE
+              </div>
+              <h3>Data Overflow</h3>
             </div>
-        </section>
+          </div>
+          <div class="event-card-featured">
+            <img src="../assets/images/event_pic.jpeg" class="featured-bg" />
+            <div class="featured-overlay">
+              <div class="club-tag">
+                <img src="../assets/images/logo_pic.webp" alt="logo" /> ACM
+              </div>
+              <h3>Winter Cup 8.0</h3>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section class="upcoming-section">
-            <h2 class="section-subtitle">Upcoming Events</h2>
-            <div class="upcoming-grid">
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-gold">Culture</span>
-                        <h4>JTI 10.0</h4>
-                        <p>Theatro • Amphi</p>
-                    </div>
-                </div>
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-red">Security</span>
-                        <h4>National CTF</h4>
-                        <p>Securinets • Hall</p>
-                    </div>
-                </div>
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-blue">Cinema</span>
-                        <h4>Movie Night</h4>
-                        <p>Cine-Club • Amphi</p>
-                    </div>
-                </div>
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-gold">Workshop</span>
-                        <h4>Soft Skills</h4>
-                        <p>Junior Entreprise</p>
-                    </div>
-                </div>
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-red">Gaming</span>
-                        <h4>Tournament</h4>
-                        <p>Netlinks • Lab</p>
-                    </div>
-                </div>
-                <div class="small-event-card">
-                    <div class="thumb"><img src="../assets/images/event_pic.jpeg"></div>
-                    <div class="small-card-content">
-                        <span class="badge badge-blue">Social</span>
-                        <h4>Food Festival</h4>
-                        <p>Android Club</p>
-                    </div>
-                </div>
+      <section class="upcoming-section">
+        <h2 class="section-subtitle">Upcoming Events</h2>
+        <div class="upcoming-grid">
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
             </div>
-        </section>
+            <div class="small-card-content">
+              <span class="badge badge-gold">Culture</span>
+              <h4>JTI 10.0</h4>
+              <p>Theatro • Amphi</p>
+            </div>
+          </div>
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
+            </div>
+            <div class="small-card-content">
+              <span class="badge badge-red">Security</span>
+              <h4>National CTF</h4>
+              <p>Securinets • Hall</p>
+            </div>
+          </div>
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
+            </div>
+            <div class="small-card-content">
+              <span class="badge badge-blue">Cinema</span>
+              <h4>Movie Night</h4>
+              <p>Cine-Club • Amphi</p>
+            </div>
+          </div>
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
+            </div>
+            <div class="small-card-content">
+              <span class="badge badge-gold">Workshop</span>
+              <h4>Soft Skills</h4>
+              <p>Junior Entreprise</p>
+            </div>
+          </div>
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
+            </div>
+            <div class="small-card-content">
+              <span class="badge badge-red">Gaming</span>
+              <h4>Tournament</h4>
+              <p>Netlinks • Lab</p>
+            </div>
+          </div>
+          <div class="small-event-card">
+            <div class="thumb">
+              <img src="../assets/images/event_pic.jpeg" />
+            </div>
+            <div class="small-card-content">
+              <span class="badge badge-blue">Social</span>
+              <h4>Food Festival</h4>
+              <p>Android Club</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
-
-</body>
+  </body>
 </html>
