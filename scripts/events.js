@@ -1,36 +1,17 @@
-// Event data structure - no hardcoding in HTML!
-const eventsData = [
-  {
-    id: 1,
-    title: "Data Overflow",
-    club: "IEEE",
-    clubLogo: "../assets/images/ieee/profile.jpg",
-    image: "../assets/images/ieee/event-data_overflow.png",
-    date: "2024-03-15",
-    time: "14:00",
-    location: "Room 101",
-    description:
-      "Join us for an exciting workshop on data structures and algorithms.",
-    participants: 30,
-    maxParticipants: 50,
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "Winter Cup 8.0",
-    club: "ACM",
-    clubLogo: "../assets/images/acm/profile.jpg",
-    image: "../assets/images/acm/event-winter_cup.jpg",
-    date: "2024-03-20",
-    time: "10:00",
-    location: "Auditorium A",
-    description:
-      "Annual programming competition featuring challenges from beginner to advanced.",
-    participants: 45,
-    maxParticipants: 100,
-    featured: true,
-  },
-];
+// Event data - loaded from JSON file
+let eventsData = [];
+
+// Load events from JSON file
+async function loadEvents() {
+  try {
+    const response = await fetch("../data/events.json");
+    eventsData = await response.json();
+    renderFeaturedEvents();
+    renderUpcomingEvents();
+  } catch (error) {
+    console.error("Error loading events:", error);
+  }
+}
 
 // Render featured events to the DOM
 function renderFeaturedEvents() {
@@ -75,10 +56,14 @@ function renderUpcomingEvents() {
   // Clear existing events
   eventsContainer.innerHTML = "";
 
-  // Sort by date
-  const upcoming = [...eventsData].sort(
-    (a, b) => new Date(a.date) - new Date(b.date),
-  );
+  // Get current date (midnight) for comparison
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
+
+  // Filter events that haven't happened yet and sort by date
+  const upcoming = [...eventsData]
+    .filter((event) => new Date(event.date) >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
 
   upcoming.forEach((event) => {
     const eventCard = document.createElement("div");
@@ -172,6 +157,5 @@ function getEventById(eventId) {
 
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", () => {
-  renderFeaturedEvents();
-  renderUpcomingEvents();
+  loadEvents();
 });

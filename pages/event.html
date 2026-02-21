@@ -25,21 +25,21 @@
         </div>
       </div>
     </header>
-    <div class="image_side"></div>
+    <div class="image_side" id="eventImage"></div>
     <div class="content_side">
       <section class="left">
         <header>
-          <h1>NAME OF THE EVENT</h1>
-          <p>name of the club</p>
+          <h1 id="eventTitle">NAME OF THE EVENT</h1>
+          <p id="eventClub">name of the club</p>
         </header>
-        <p><strong>📅 Date :</strong> date</p>
-        <p><strong>⏰Heure :</strong> time</p>
-        <p><strong>📍Lieu :</strong> place</p>
-        <p><strong>📖description:</strong> texte</p>
+        <p><strong>📅 Date :</strong> <span id="eventDate">date</span></p>
+        <p><strong>⏰Heure :</strong> <span id="eventTime">time</span></p>
+        <p><strong>📍Lieu :</strong> <span id="eventLocation">place</span></p>
+        <p><strong>📖description:</strong> <span id="eventDescription">texte</span></p>
       </section>
       <section class="right">
         <div class="participants-line">
-          <div class="progress" style="width: 60%">30 / 50 participants</div>
+          <div class="progress" id="eventProgress" style="width: 60%">30 / 50 participants</div>
         </div>
 
         <button class="reg">Register now</button><br />
@@ -47,5 +47,38 @@
         <button>share event</button><br />
       </section>
     </div>
+    <script>
+      // Load event details from sessionStorage
+      document.addEventListener("DOMContentLoaded", () => {
+        const eventData = sessionStorage.getItem("currentEvent");
+        if (eventData) {
+          const event = JSON.parse(eventData);
+          
+          // Update event details
+          document.getElementById("eventTitle").textContent = event.title;
+          document.getElementById("eventClub").textContent = event.club;
+          document.getElementById("eventDate").textContent = new Date(event.date).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+          document.getElementById("eventTime").textContent = event.time;
+          document.getElementById("eventLocation").textContent = event.location;
+          document.getElementById("eventDescription").textContent = event.description;
+          
+          // Update participants progress
+          const progressPercent = (event.participants / event.maxParticipants) * 100;
+          const progressEl = document.getElementById("eventProgress");
+          progressEl.style.width = progressPercent + "%";
+          progressEl.textContent = `${event.participants} / ${event.maxParticipants} participants`;
+          
+          // Set background image
+          const imageDiv = document.getElementById("eventImage");
+          imageDiv.style.backgroundImage = `url('${event.image}')`;
+          imageDiv.style.backgroundSize = "cover";
+          imageDiv.style.backgroundPosition = "center";
+        }
+      });
+    </script>
   </body>
 </html>
