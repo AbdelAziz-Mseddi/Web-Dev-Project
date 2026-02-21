@@ -30,6 +30,13 @@
     background-position: 50% 35%;
 }
 
+/* Stars overlay video */
+.stars-overlay {
+    position: fixed;
+    z-index: 0;
+    opacity: 0.6;
+}
+
 /* The Glass Box */
 .glass-container {
     position: relative;
