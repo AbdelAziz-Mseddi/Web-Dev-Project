@@ -1,11 +1,34 @@
-// Event data - loaded from JSON file
+// Event data - loaded from JSON files
 let eventsData = [];
 
-// Load events from JSON file
+// List of all club event JSON files
+const clubEventFiles = [
+  "../data/ieee_events.json",
+  "../data/acm_events.json",
+  "../data/securinets_events.json",
+  "../data/aerobotix_events.json",
+  "../data/cine_radio_events.json",
+  "../data/jci_events.json",
+  "../data/junior_events.json",
+  "../data/theatro_events.json",
+];
+
+// Load events from all club JSON files
 async function loadEvents() {
   try {
-    const response = await fetch("../data/events.json");
-    eventsData = await response.json();
+    // Fetch all club event files in parallel
+    const responses = await Promise.all(
+      clubEventFiles.map((file) => fetch(file)),
+    );
+
+    // Parse all responses
+    const clubEvents = await Promise.all(
+      responses.map((response) => response.json()),
+    );
+
+    // Flatten and combine all events into a single array
+    eventsData = clubEvents.flat();
+
     renderFeaturedEvents();
     renderUpcomingEvents();
   } catch (error) {
