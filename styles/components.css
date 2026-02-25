@@ -367,3 +367,457 @@
     filter: saturate(1.2);
     /* Makes colors slightly more vivid on hover */
 }
+
+/* ══════════════════════════════
+   INTERACTIVE CALENDAR ADDITIONS
+   ══════════════════════════════*/
+
+/* ── Selected Day ── */
+.calendar-day.selected {
+    background: linear-gradient(135deg, rgba(43, 62, 78, 0.12) 0%, rgba(173, 157, 97, 0.12) 100%);
+    border: 2px solid var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(43, 62, 78, 0.08), 0 4px 16px rgba(43, 62, 78, 0.12);
+}
+
+.calendar-day.selected .day-number {
+    color: var(--primary-blue);
+    font-weight: 700;
+}
+
+/* ── Additional Event-Pill Colours ── */
+.pill-green {
+    background: linear-gradient(135deg, #3B6B35 0%, #549947 100%);
+}
+
+.pill-purple {
+    background: linear-gradient(135deg, #5B3FA6 0%, #7A5CC7 100%);
+}
+
+.pill-grey {
+    background: linear-gradient(135deg, #6b7280 0%, #9ca3af 100%);
+}
+
+.pill-more {
+    background: rgba(43, 62, 78, 0.12);
+    color: var(--primary-blue);
+    font-size: 0.65rem;
+}
+
+/* ── Additional Badge Colours ── */
+.badge-green {
+    background-color: #3B6B35;
+}
+
+.badge-purple {
+    background-color: #5B3FA6;
+}
+
+.badge-grey {
+    background-color: #6b7280;
+}
+
+/* ── Day Detail Panel ── */
+.calendar-section {
+    position: relative;
+    /* ensure stacking context for the panel */
+    overflow: visible;
+    /* allow panel to protrude slightly */
+}
+
+.day-panel {
+    position: absolute;
+    bottom: -4px;
+    left: -4px;
+    right: -4px;
+    background: #fff;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 16px 48px rgba(43, 62, 78, 0.18);
+    border-top: 3px solid var(--accent-gold);
+    padding: 1.4rem 1.8rem;
+    z-index: 20;
+    transform: translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.38s ease,
+        visibility 0.38s;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.day-panel.open {
+    transform: translateY(0%);
+    opacity: 1;
+    visibility: visible;
+}
+
+.day-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.day-panel-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin: 0;
+}
+
+.day-panel-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* ── Agenda Items ── */
+.agenda-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid rgba(43, 62, 78, 0.05);
+    position: relative;
+}
+
+.agenda-item:last-child {
+    border-bottom: none;
+}
+
+.agenda-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+
+/* Re-use pill colours for dot fills */
+.agenda-dot.pill-blue {
+    background: #2b3e4e;
+}
+
+.agenda-dot.pill-gold {
+    background: #ad9d61;
+}
+
+.agenda-dot.pill-red {
+    background: #820608;
+}
+
+.agenda-dot.pill-green {
+    background: #3B6B35;
+}
+
+.agenda-dot.pill-purple {
+    background: #5B3FA6;
+}
+
+.agenda-dot.pill-grey {
+    background: #6b7280;
+}
+
+.agenda-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.agenda-time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.agenda-name {
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.agenda-loc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.agenda-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.5;
+}
+
+.agenda-delete {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 4px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s, background 0.2s;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.agenda-delete:hover {
+    color: var(--deep-red);
+    background: rgba(130, 6, 8, 0.08);
+}
+
+.no-events-msg {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 1.5rem 0;
+    line-height: 1.7;
+}
+
+/* ── Small Button Variant ── */
+.btn-sm {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* ── Close icon-btn variant ── */
+.icon-btn-close {
+    color: var(--text-muted);
+}
+
+.icon-btn-close:hover {
+    background: rgba(130, 6, 8, 0.08);
+    color: var(--deep-red);
+}
+
+/* ── Global Add-Event Button ── */
+.btn-add-global {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.55rem 1.2rem;
+    font-size: 0.9rem;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px rgba(173, 157, 97, 0.3);
+    transition: box-shadow 0.25s, transform 0.25s, opacity 0.2s;
+}
+
+.btn-add-global:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(173, 157, 97, 0.4);
+    opacity: 1;
+}
+
+/* ── Featured Feed Section ── */
+.feed-section h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 2px solid rgba(43, 62, 78, 0.06);
+}
+
+/* ── Category-Coloured Placeholder Images ── */
+.card-image.featured-color-academic {
+    background: linear-gradient(135deg, #2b3e4e, #3d5a73);
+}
+
+.card-image.featured-color-sports {
+    background: linear-gradient(135deg, #3B6B35, #549947);
+}
+
+.card-image.featured-color-culture {
+    background: linear-gradient(135deg, #5B3FA6, #7A5CC7);
+}
+
+.card-image.featured-color-career {
+    background: linear-gradient(135deg, #ad9d61, #c9b876);
+}
+
+.card-image.featured-color-social {
+    background: linear-gradient(135deg, #820608, #a50810);
+}
+
+.card-image.featured-color-other {
+    background: linear-gradient(135deg, #6b7280, #9ca3af);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ADD-EVENT MODAL
+   ══════════════════════════════════════════════════════════════ */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 30, 40, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.modal-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-overlay.open .modal-card {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.modal-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2rem;
+    width: min(540px, 95vw);
+    box-shadow: 0 32px 80px rgba(20, 30, 40, 0.25);
+    transform: scale(0.94) translateY(20px);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+        opacity 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-gold), var(--deep-red));
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.6rem;
+}
+
+.modal-header h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin: 0;
+}
+
+/* ── Form Styles ── */
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.required {
+    color: var(--deep-red);
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.65rem 0.95rem;
+    border: 1.5px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-stack);
+    font-size: 0.9rem;
+    color: var(--text-main);
+    background: #fafbfd;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--accent-gold);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(173, 157, 97, 0.18);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+}
+
+.btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--border-light);
+    color: var(--text-muted);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    font-family: var(--font-stack);
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-ghost:hover {
+    background: #f0f4ff;
+    color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.btn.btn-gold {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-stack);
+}
+
+/* ── Custom scrollbar for day panel ── */
+.day-panel::-webkit-scrollbar {
+    width: 4px;
+}
+
+.day-panel::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 4px;
+}

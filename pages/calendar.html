@@ -1,227 +1,192 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INSATivity | Calendar</title>
-    <link rel="stylesheet" href="../styles/base.css" />
-    <link rel="stylesheet" href="../styles/layout.css" />
-    <link rel="stylesheet" href="../styles/components.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
 
-  <body>
-    <header class="main-header">
-      <div class="nav-container">
-        <div class="logo">INSATivity</div>
-        <nav class="main-nav">
-          <a href="index.html" class="nav-link">Events</a>
-          <a href="calendar.html" class="nav-link active">Calendar</a>
-          <a href="clubs.html" class="nav-link">Clubs</a>
-        </nav>
-        <div class="header-actions">
-          <img class="profile-avatar" src="../assets/icons/search.svg" />
-          <img class="profile-avatar" src="../assets/icons/notifications.svg" />
-          <img class="profile-avatar" src="../assets/icons/user.svg" />
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INSATivity | Calendar</title>
+  <meta name="description" content="Browse, add and manage club events on the INSATivity interactive calendar." />
+  <link rel="stylesheet" href="../styles/base.css" />
+  <link rel="stylesheet" href="../styles/layout.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ───────────────────────── HEADER ───────────────────────── -->
+  <header class="main-header">
+    <div class="nav-container">
+      <div class="logo">INSATivity</div>
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Events</a>
+        <a href="calendar.html" class="nav-link active">Calendar</a>
+        <a href="clubs.html" class="nav-link">Clubs</a>
+      </nav>
+      <div class="header-actions">
+        <img class="profile-avatar" src="../assets/icons/search.svg" alt="Search" />
+        <img class="profile-avatar" src="../assets/icons/notifications.svg" alt="Notifications" />
+        <img class="profile-avatar" src="../assets/icons/user.svg" alt="User" />
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main class="dashboard-container">
-      <div class="dashboard-header">
-        <h1>Event Schedule</h1>
-        <div class="search-filter-wrapper">
-          <input
-            type="text"
-            class="search-bar"
-            placeholder="Search events, clubs..."
-          />
-          <button class="btn btn-gold">Filter</button>
-        </div>
+  <!-- ───────────────────────── MAIN ─────────────────────────── -->
+  <main class="dashboard-container">
+    <div class="dashboard-header">
+      <h1>Event Schedule</h1>
+      <div class="search-filter-wrapper">
+        <input type="text" class="search-bar" placeholder="Search events, clubs, categories…" id="calSearch" />
+        <!-- Global "Add Event" button -->
+        <button class="btn btn-gold btn-add-global" id="btnGlobalAdd">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
+          </svg>
+          Add Event
+        </button>
       </div>
+    </div>
 
-      <div class="dashboard-grid">
-        <section class="calendar-section">
-          <div class="calendar-header">
-            <div class="calendar-title-wrapper">
-              <h2 class="calendar-month">February</h2>
-              <span class="calendar-year">2026</span>
-            </div>
-            <div class="calendar-controls">
-              <button class="icon-btn" aria-label="Previous month">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="15 18 9 12 15 6"></polyline>
+    <!-- ─── CALENDAR + SIDEBAR GRID ─── -->
+    <div class="dashboard-grid">
+
+      <!-- LEFT: Calendar -->
+      <section class="calendar-section">
+        <div class="calendar-header">
+          <div class="calendar-title-wrapper">
+            <h2 class="calendar-month" id="calMonthLabel">—</h2>
+            <span class="calendar-year" id="calYearLabel">—</span>
+          </div>
+          <div class="calendar-controls">
+            <button class="icon-btn" id="btnPrev" aria-label="Previous month">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <button class="icon-btn icon-btn-today" id="btnToday">Today</button>
+            <button class="icon-btn" id="btnNext" aria-label="Next month">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Calendar grid — day names stay static, days are JS-rendered -->
+        <div class="calendar-grid" id="calGrid">
+          <div class="day-name">Sun</div>
+          <div class="day-name">Mon</div>
+          <div class="day-name">Tue</div>
+          <div class="day-name">Wed</div>
+          <div class="day-name">Thu</div>
+          <div class="day-name">Fri</div>
+          <div class="day-name">Sat</div>
+        </div>
+
+        <!-- Day detail panel (slides in from bottom of card) -->
+        <div class="day-panel" id="dayPanel">
+          <div class="day-panel-header">
+            <h3 class="day-panel-title" id="dayPanelTitle">—</h3>
+            <div class="day-panel-actions">
+              <button class="btn btn-gold btn-sm" id="btnAddEvent">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+                Add Event
+              </button>
+              <button class="icon-btn icon-btn-close" id="btnClosePanel" aria-label="Close panel">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
               </button>
-              <button class="icon-btn icon-btn-today">Today</button>
-              <button class="icon-btn" aria-label="Next month">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-              </button>
             </div>
           </div>
+          <div class="day-panel-list" id="dayPanelList"></div>
+        </div>
+      </section>
 
-          <div class="calendar-grid">
-            <div class="day-name">Sun</div>
-            <div class="day-name">Mon</div>
-            <div class="day-name">Tue</div>
-            <div class="day-name">Wed</div>
-            <div class="day-name">Thu</div>
-            <div class="day-name">Fri</div>
-            <div class="day-name">Sat</div>
+      <!-- RIGHT: Featured Events feed -->
+      <aside class="feed-section">
+        <h3>Upcoming Events</h3>
+        <div class="feed-scroll" id="featuredList">
+          <!-- Populated by JS -->
+        </div>
+      </aside>
+    </div>
+  </main>
 
-            <div class="calendar-day muted">
-              <span class="day-number">29</span>
-            </div>
-            <div class="calendar-day muted">
-              <span class="day-number">30</span>
-            </div>
-            <div class="calendar-day muted">
-              <span class="day-number">31</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">1</span>
-            </div>
-            <div class="calendar-day has-event">
-              <span class="day-number">2</span>
-              <span class="event-pill pill-blue">Basketball</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">3</span>
-            </div>
-            <div class="calendar-day current has-event">
-              <span class="day-number">4</span>
-              <span class="event-pill pill-gold">Career Fair</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">5</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">6</span>
-            </div>
-            <div class="calendar-day has-event">
-              <span class="day-number">7</span>
-              <span class="event-pill pill-red">Hackathon</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">8</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">9</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">10</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">11</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">12</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">13</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">14</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">15</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">16</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">17</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">18</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">19</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">20</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">21</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">22</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">23</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">24</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">25</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">26</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">27</span>
-            </div>
-            <div class="calendar-day">
-              <span class="day-number">28</span>
-            </div>
-          </div>
-        </section>
-
-        <aside class="feed-section">
-          <h3>Featured Events</h3>
-          <div class="feed-scroll">
-            <article class="event-card">
-              <div class="card-image placeholder-img"></div>
-              <div class="card-content">
-                <span class="badge badge-red">Live Now</span>
-                <h4>Tech Talk: AI Futures</h4>
-                <p class="meta">📍 Hall • 10:00 AM</p>
-                <p class="attendees">👥 120 attending</p>
-              </div>
-            </article>
-
-            <article class="event-card">
-              <div class="card-image placeholder-img"></div>
-              <div class="card-content">
-                <span class="badge badge-gold">Premium</span>
-                <h4>Alumni Gala</h4>
-                <p class="meta">📍 Main Quad • Feb 15, 2026 • 20:00 PM</p>
-                <p class="attendees">👥 350 attending</p>
-              </div>
-            </article>
-
-            <article class="event-card">
-              <div class="card-image placeholder-img"></div>
-              <div class="card-content">
-                <span class="badge badge-blue">Cultural</span>
-                <h4>Art Exhibition</h4>
-                <p class="meta">📍 Gallery • Mar 20, 2026 • 8:00 AM</p>
-                <p class="attendees">👥 45 attending</p>
-              </div>
-            </article>
-          </div>
-        </aside>
+  <!-- ───────────────────────── ADD-EVENT MODAL ───────────────────────── -->
+  <div class="modal-overlay" id="eventModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add New Event</h3>
+        <button class="icon-btn icon-btn-close" id="btnCloseModal" aria-label="Close">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
       </div>
-    </main>
-  </body>
+
+      <form class="modal-form" id="modalForm" novalidate>
+        <label class="form-label" for="fTitle">Event Title <span class="required">*</span></label>
+        <input class="form-input" id="fTitle" type="text" placeholder="e.g. Chess Club Meeting" required />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fDate">Date <span class="required">*</span></label>
+            <input class="form-input" id="fDate" type="date" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fTime">Time</label>
+            <input class="form-input" id="fTime" type="time" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="fCategory">Category</label>
+            <select class="form-input form-select" id="fCategory">
+              <option value="academic">📚 Academic</option>
+              <option value="sports">⚽ Sports</option>
+              <option value="culture">🎨 Culture</option>
+              <option value="career">💼 Career</option>
+              <option value="social">🎉 Social</option>
+              <option value="other">📌 Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="fLocation">Location</label>
+            <input class="form-input" id="fLocation" type="text" placeholder="e.g. Hall A" />
+          </div>
+        </div>
+
+        <label class="form-label" for="fDescription">Description</label>
+        <textarea class="form-input form-textarea" id="fDescription" rows="3"
+          placeholder="Brief event details…"></textarea>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="btnCancelModal">Cancel</button>
+          <button type="submit" class="btn btn-gold">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Save Event
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="../scripts/calendar.js"></script>
+  <script>
+    // Wire cancel button
+    document.getElementById('btnCancelModal').addEventListener('click', () => {
+      document.getElementById('eventModal').classList.remove('open');
+    });
+  </script>
+</body>
+
 </html>
