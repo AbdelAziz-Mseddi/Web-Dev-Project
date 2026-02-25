@@ -1,15 +1,18 @@
-
 'use strict';
 
-/* ────────── CONSTANTS ───────── */
 const STORAGE_KEY = 'insativity_events';
-const CATEGORY_COLORS = {
-    academic: { pill: 'pill-blue', label: '#2b3e4e' },
-    sports: { pill: 'pill-green', label: '#3B6B35' },
-    culture: { pill: 'pill-purple', label: '#5B3FA6' },
-    career: { pill: 'pill-gold', label: '#ad9d61' },
-    social: { pill: 'pill-red', label: '#820608' },
-    other: { pill: 'pill-grey', label: '#6b7280' },
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+const CAT = {
+    academic: { pill: 'pill-blue', badge: 'badge-blue', label: 'Academic' },
+    sports: { pill: 'pill-green', badge: 'badge-green', label: 'Sports' },
+    culture: { pill: 'pill-purple', badge: 'badge-purple', label: 'Cultural' },
+    career: { pill: 'pill-gold', badge: 'badge-gold', label: 'Career' },
+    social: { pill: 'pill-red', badge: 'badge-red', label: 'Social' },
+    other: { pill: 'pill-grey', badge: 'badge-grey', label: 'Other' },
 };
 
 const DEFAULT_EVENTS = [
@@ -21,12 +24,13 @@ const DEFAULT_EVENTS = [
     { id: 'e6', title: 'Tech Talk: AI Futures', date: '2026-02-25', category: 'academic', time: '10:00', location: 'Amphitheatre', description: 'Panel discussion on AI trends in industry.' },
 ];
 
-/* ─────────────── STATE ──────────── */
-let events = loadEvents();
-let current = { year: new Date().getFullYear(), month: new Date().getMonth() }; // 0-indexed
-let selected = null;   // { year, month, day }
+let events = loadStorage();
+let current = { year: new Date().getFullYear(), month: new Date().getMonth() };
+let selected = null;
 
-/* ────────────── DOM REFS ───────── */
+const TODAY = new Date();
+const T = { y: TODAY.getFullYear(), m: TODAY.getMonth(), d: TODAY.getDate() };
+
 const $ = id => document.getElementById(id);
 const calGrid = $('calGrid');
 const calMonthLabel = $('calMonthLabel');
@@ -46,18 +50,15 @@ const btnCloseModal = $('btnCloseModal');
 const searchBar = document.querySelector('.search-bar');
 const featuredList = $('featuredList');
 
-/* ────────── INIT ─────────── */
 document.addEventListener('DOMContentLoaded', () => {
     renderCalendar();
     renderFeatured();
     bindControls();
     bindModal();
     bindSearch();
-    highlightTodayAutoLabel();
 });
 
-/* ───────────── STORAGE ────────── */
-function loadEvents() {
+function loadStorage() {
     try {
         const raw = localStorage.getItem(STORAGE_KEY);
         return raw ? JSON.parse(raw) : [...DEFAULT_EVENTS];
@@ -70,42 +71,32 @@ function saveEvents() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
 }
 
-/* ───────── RENDER CALENDAR ──────── */
 function renderCalendar() {
     const { year, month } = current;
-    const today = new Date();
 
-    const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
     calMonthLabel.textContent = MONTHS[month];
     calYearLabel.textContent = year;
 
-    const firstDay = new Date(year, month, 1).getDay();   // 0=Sun
+    const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
     const daysInPrev = new Date(year, month, 0).getDate();
-
-    // Clear existing day cells (keep header row: 7 day-name divs)
-    const dayNames = calGrid.querySelectorAll('.day-name');
-    calGrid.innerHTML = '';
-    dayNames.forEach(d => calGrid.appendChild(d));
-
     const totalCells = Math.ceil((firstDay + daysInMonth) / 7) * 7;
 
+    const frag = document.createDocumentFragment();
+    calGrid.querySelectorAll('.day-name').forEach(n => frag.appendChild(n));
+
     for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement('div');
-        let cellDay, cellYear, cellMonth, isMuted = false;
+        let cellDay, cellMonth, cellYear, isMuted = false;
 
         if (i < firstDay) {
-            // Prev month overflow
             cellDay = daysInPrev - firstDay + 1 + i;
-            cellMonth = month - 1 < 0 ? 11 : month - 1;
-            cellYear = month - 1 < 0 ? year - 1 : year;
+            cellMonth = month === 0 ? 11 : month - 1;
+            cellYear = month === 0 ? year - 1 : year;
             isMuted = true;
         } else if (i >= firstDay + daysInMonth) {
-            // Next month overflow
             cellDay = i - firstDay - daysInMonth + 1;
-            cellMonth = month + 1 > 11 ? 0 : month + 1;
-            cellYear = month + 1 > 11 ? year + 1 : year;
+            cellMonth = month === 11 ? 0 : month + 1;
+            cellYear = month === 11 ? year + 1 : year;
             isMuted = true;
         } else {
             cellDay = i - firstDay + 1;
@@ -113,54 +104,57 @@ function renderCalendar() {
             cellYear = year;
         }
 
-        const isToday = !isMuted
-            && cellDay === today.getDate()
-            && cellMonth === today.getMonth()
-            && cellYear === today.getFullYear();
-
+        const isToday = !isMuted && cellDay === T.d && cellMonth === T.m && cellYear === T.y;
+        const isWeekend = (i % 7 === 0) || (i % 7 === 6);
         const dateStr = toDateStr(cellYear, cellMonth, cellDay);
         const dayEvts = events.filter(e => e.date === dateStr);
 
-        cell.className = 'calendar-day'
-            + (isMuted ? ' muted' : '')
-            + (isToday ? ' current' : '')
-            + (dayEvts.length > 0 && !isMuted ? ' has-event' : '')
-            + (isSelected(cellYear, cellMonth, cellDay) ? ' selected' : '');
+        const cell = document.createElement('div');
+        cell.className = [
+            'calendar-day',
+            isMuted ? 'muted' : '',
+            isToday ? 'current' : '',
+            !isMuted && isWeekend ? 'weekend' : '',
+            !isMuted && dayEvts.length ? 'has-event' : '',
+            isSelected(cellYear, cellMonth, cellDay) ? 'selected' : '',
+        ].filter(Boolean).join(' ');
 
-        // Day number
         const num = document.createElement('span');
         num.className = 'day-number';
         num.textContent = cellDay;
         cell.appendChild(num);
 
-        // Event pills (max 2 visible + overflow badge)
-        if (!isMuted) {
-            const MAX_PILLS = 2;
-            dayEvts.slice(0, MAX_PILLS).forEach(evt => {
+        if (!isMuted && dayEvts.length) {
+            const MAX = 2;
+            dayEvts.slice(0, MAX).forEach(evt => {
                 const pill = document.createElement('span');
-                const cat = CATEGORY_COLORS[evt.category] || CATEGORY_COLORS.other;
-                pill.className = `event-pill ${cat.pill}`;
+                pill.className = `event-pill ${(CAT[evt.category] || CAT.other).pill}`;
                 pill.textContent = evt.title;
                 cell.appendChild(pill);
             });
-            if (dayEvts.length > MAX_PILLS) {
+            if (dayEvts.length > MAX) {
                 const more = document.createElement('span');
                 more.className = 'event-pill pill-more';
-                more.textContent = `+${dayEvts.length - MAX_PILLS} more`;
+                more.textContent = `+${dayEvts.length - MAX}`;
                 cell.appendChild(more);
             }
         }
 
-        // Click → select day & open panel
         if (!isMuted) {
             cell.addEventListener('click', () => selectDay(cellYear, cellMonth, cellDay));
         }
 
-        calGrid.appendChild(cell);
+        frag.appendChild(cell);
     }
+
+    calGrid.innerHTML = '';
+    calGrid.appendChild(frag);
+
+    calGrid.classList.remove('cal-animate');
+    void calGrid.offsetWidth; // force reflow to restart animation
+    calGrid.classList.add('cal-animate');
 }
 
-/* ─────────── DAY PANEL ──────── */
 function selectDay(year, month, day) {
     selected = { year, month, day };
     renderCalendar();
@@ -170,46 +164,42 @@ function selectDay(year, month, day) {
 function openDayPanel(year, month, day) {
     const dateStr = toDateStr(year, month, day);
     const dayEvts = events.filter(e => e.date === dateStr);
-
-    const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
-        'July', 'August', 'September', 'October', 'November', 'December'];
-    const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const dow = new Date(year, month, day).getDay();
 
     dayPanelTitle.textContent = `${DAYS[dow]}, ${MONTHS[month]} ${day}, ${year}`;
     btnAddEvent.dataset.date = dateStr;
 
-    dayPanelList.innerHTML = '';
     if (dayEvts.length === 0) {
         dayPanelList.innerHTML = `<p class="no-events-msg">No events scheduled.<br>Click <strong>+ Add Event</strong> to create one.</p>`;
     } else {
+        const frag = document.createDocumentFragment();
         dayEvts.forEach(evt => {
+            const cat = CAT[evt.category] || CAT.other;
             const item = document.createElement('div');
             item.className = 'agenda-item';
-            const cat = CATEGORY_COLORS[evt.category] || CATEGORY_COLORS.other;
             item.innerHTML = `
-        <div class="agenda-dot ${cat.pill}"></div>
-        <div class="agenda-info">
-          <span class="agenda-time">${evt.time || '—'}</span>
-          <span class="agenda-name">${evt.title}</span>
-          <span class="agenda-loc">${evt.location ? '📍 ' + evt.location : ''}</span>
-          ${evt.description ? `<p class="agenda-desc">${evt.description}</p>` : ''}
-        </div>
-        <button class="agenda-delete" data-id="${evt.id}" title="Delete event">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/>
-            <path d="M9 6V4h6v2"/>
-          </svg>
-        </button>`;
-            dayPanelList.appendChild(item);
+                <div class="agenda-accent ${cat.pill}"></div>
+                <div class="agenda-info">
+                    <span class="agenda-time">${evt.time || '—'}</span>
+                    <span class="agenda-name">${evt.title}</span>
+                    ${evt.location ? `<span class="agenda-loc">📍 ${evt.location}</span>` : ''}
+                    ${evt.description ? `<p class="agenda-desc">${evt.description}</p>` : ''}
+                </div>
+                <button class="agenda-delete" data-id="${evt.id}" title="Delete event">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <polyline points="3 6 5 6 21 6"/>
+                        <path d="M19 6l-1 14H6L5 6"/>
+                        <path d="M10 11v6M14 11v6M9 6V4h6v2"/>
+                    </svg>
+                </button>`;
+            frag.appendChild(item);
         });
+        dayPanelList.innerHTML = '';
+        dayPanelList.appendChild(frag);
 
-        dayPanelList.querySelectorAll('.agenda-delete').forEach(btn => {
-            btn.addEventListener('click', e => {
-                e.stopPropagation();
-                deleteEvent(btn.dataset.id);
-            });
-        });
+        dayPanelList.querySelectorAll('.agenda-delete').forEach(btn =>
+            btn.addEventListener('click', e => { e.stopPropagation(); deleteEvent(btn.dataset.id); })
+        );
     }
 
     dayPanel.classList.add('open');
@@ -221,62 +211,57 @@ function closeDayPanel() {
     renderCalendar();
 }
 
-/* ─────────── FEATURED PANEL ───────── */
 function renderFeatured(filter = '') {
-    const lower = filter.toLowerCase();
-    const upcomingEvents = events
-        .filter(e => {
-            const d = new Date(e.date);
-            const n = new Date();
-            n.setHours(0, 0, 0, 0);
-            return d >= n;
-        })
-        .filter(e => !filter || e.title.toLowerCase().includes(lower)
+    const lower = filter.toLowerCase().trim();
+    const nowStart = new Date(); nowStart.setHours(0, 0, 0, 0);
+
+    const list = events
+        .filter(e => new Date(e.date) >= nowStart)
+        .filter(e => !lower
+            || e.title.toLowerCase().includes(lower)
             || (e.location || '').toLowerCase().includes(lower)
             || e.category.toLowerCase().includes(lower))
-        .sort((a, b) => new Date(a.date) - new Date(b.date))
+        .sort((a, b) => a.date.localeCompare(b.date))
         .slice(0, 8);
 
-    featuredList.innerHTML = '';
-
-    if (upcomingEvents.length === 0) {
-        featuredList.innerHTML = `<p class="no-events-msg" style="padding:1rem;">No events match your search.</p>`;
+    if (list.length === 0) {
+        featuredList.innerHTML = `<p class="no-events-msg" style="padding:1rem 0;">No events match your search.</p>`;
         return;
     }
 
-    const BADGE_LABELS = { academic: 'Academic', sports: 'Sports', culture: 'Cultural', career: 'Career', social: 'Social', other: 'Other' };
-    const BADGE_CLASSES = { academic: 'badge-blue', sports: 'badge-green', culture: 'badge-purple', career: 'badge-gold', social: 'badge-red', other: 'badge-grey' };
-
-    upcomingEvents.forEach(evt => {
-        const dateObj = new Date(evt.date + 'T00:00');
-        const dateLabel = dateObj.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-        const badgeClass = BADGE_CLASSES[evt.category] || 'badge-grey';
-        const badgeLabel = BADGE_LABELS[evt.category] || 'Other';
+    const frag = document.createDocumentFragment();
+    list.forEach(evt => {
+        const cat = CAT[evt.category] || CAT.other;
+        const dateLabel = new Date(evt.date + 'T00:00')
+            .toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        const desc = evt.description
+            ? evt.description.slice(0, 65) + (evt.description.length > 65 ? '…' : '')
+            : '';
 
         const card = document.createElement('article');
         card.className = 'event-card';
         card.innerHTML = `
-      <div class="card-image placeholder-img featured-color-${evt.category}"></div>
-      <div class="card-content">
-        <span class="badge ${badgeClass}">${badgeLabel}</span>
-        <h4>${evt.title}</h4>
-        <p class="meta">📍 ${evt.location || '—'} • ${dateLabel} • ${evt.time || '—'}</p>
-        <p class="attendees" style="font-size:0.8rem;color:var(--text-muted);">${evt.description ? evt.description.substring(0, 60) + (evt.description.length > 60 ? '…' : '') : ''}</p>
-      </div>`;
+            <div class="card-image featured-color-${evt.category}"></div>
+            <div class="card-content">
+                <span class="badge ${cat.badge}">${cat.label}</span>
+                <h4>${evt.title}</h4>
+                <p class="meta">📍 ${evt.location || '—'} &nbsp;•&nbsp; ${dateLabel} &nbsp;•&nbsp; ${evt.time || '—'}</p>
+                ${desc ? `<p class="card-desc">${desc}</p>` : ''}
+            </div>`;
 
         card.addEventListener('click', () => {
-            // Navigate calendar to that event's month
             const d = new Date(evt.date + 'T00:00');
             current = { year: d.getFullYear(), month: d.getMonth() };
-            renderCalendar();
             selectDay(d.getFullYear(), d.getMonth(), d.getDate());
         });
 
-        featuredList.appendChild(card);
+        frag.appendChild(card);
     });
+
+    featuredList.innerHTML = '';
+    featuredList.appendChild(frag);
 }
 
-/* ────────── MODAL ─────────── */
 function openModal(dateStr = '') {
     $('fTitle').value = '';
     $('fDate').value = dateStr;
@@ -291,102 +276,85 @@ function openModal(dateStr = '') {
     $('fTitle').focus();
 }
 
-function closeModal() {
-    modal.classList.remove('open');
-}
+function closeModal() { modal.classList.remove('open'); }
 
 function bindModal() {
     btnCloseModal.addEventListener('click', closeModal);
     modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    $('btnCancelModal').addEventListener('click', closeModal);
 
     modalForm.addEventListener('submit', e => {
         e.preventDefault();
         const title = $('fTitle').value.trim();
         const date = $('fDate').value;
-        const time = $('fTime').value;
-        const category = $('fCategory').value;
-        const location = $('fLocation').value.trim();
-        const desc = $('fDescription').value.trim();
-
         if (!title || !date) return;
 
         const newEvt = {
             id: 'e' + Date.now(),
-            title, date, time, category, location,
-            description: desc,
+            title,
+            date,
+            time: $('fTime').value,
+            category: $('fCategory').value,
+            location: $('fLocation').value.trim(),
+            description: $('fDescription').value.trim(),
         };
         events.push(newEvt);
         saveEvents();
         closeModal();
-        renderCalendar();
-        renderFeatured();
 
-        // Re-open the day panel if we were on that day
         const d = new Date(date + 'T00:00');
         current = { year: d.getFullYear(), month: d.getMonth() };
+        renderFeatured();
         selectDay(d.getFullYear(), d.getMonth(), d.getDate());
     });
 
-    btnAddEvent.addEventListener('click', () => {
-        openModal(btnAddEvent.dataset.date || '');
-    });
+    btnAddEvent.addEventListener('click', () => openModal(btnAddEvent.dataset.date || ''));
 }
 
 function deleteEvent(id) {
     events = events.filter(e => e.id !== id);
     saveEvents();
-    renderCalendar();
     renderFeatured();
-    // Refresh panel
-    if (selected) openDayPanel(selected.year, selected.month, selected.day);
+    if (selected) {
+        renderCalendar();
+        openDayPanel(selected.year, selected.month, selected.day);
+    }
 }
 
-/* ─────────── CONTROLS ───────── */
 function bindControls() {
     btnPrev.addEventListener('click', () => {
-        if (current.month === 0) { current.month = 11; current.year--; }
-        else current.month--;
+        current.month === 0 ? (current.month = 11, current.year--) : current.month--;
         closeDayPanel();
-        renderCalendar();
     });
 
     btnNext.addEventListener('click', () => {
-        if (current.month === 11) { current.month = 0; current.year++; }
-        else current.month++;
+        current.month === 11 ? (current.month = 0, current.year++) : current.month++;
         closeDayPanel();
-        renderCalendar();
     });
 
     btnToday.addEventListener('click', () => {
-        const t = new Date();
-        current = { year: t.getFullYear(), month: t.getMonth() };
+        current = { year: T.y, month: T.m };
         closeDayPanel();
-        renderCalendar();
-        // Auto-select today
-        selectDay(t.getFullYear(), t.getMonth(), t.getDate());
+        selectDay(T.y, T.m, T.d);
     });
 
     btnClosePanel.addEventListener('click', closeDayPanel);
-
-    // Global add-event shortcut button
-    $('btnGlobalAdd').addEventListener('click', () => openModal($('fDate')?.value || ''));
+    $('btnGlobalAdd').addEventListener('click', () => openModal(''));
 }
 
-/* ─────────────── SEARCH ──────────── */
 function bindSearch() {
     if (!searchBar) return;
-    searchBar.addEventListener('input', () => renderFeatured(searchBar.value));
+    let timer;
+    searchBar.addEventListener('input', () => {
+        clearTimeout(timer);
+        timer = setTimeout(() => renderFeatured(searchBar.value), 200);
+    });
 }
 
-/* ─────────── HELPERS ────────── */
 function toDateStr(y, m, d) {
     return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 }
 
 function isSelected(y, m, d) {
     return selected && selected.year === y && selected.month === m && selected.day === d;
-}
-
-function highlightTodayAutoLabel() {
-    // Animate the "today" dot periodically (handled via CSS animation)
 }
