@@ -14,7 +14,7 @@
 }
 
 /* 1. Fix the container to align everything in one line */
-.nav-icons, .header-actions {
+.nav-icons{
     display: flex;
     align-items: center; /* Vertical alignment */
     gap: 20px;           /* Equal spacing between search, bell, and user */
