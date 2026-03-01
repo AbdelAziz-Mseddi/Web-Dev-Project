@@ -1,38 +1,26 @@
-// Event data - loaded from JSON files
+// Event data - loaded from PHP API
 let eventsData = [];
 
-// List of all club event JSON files
-const clubEventFiles = [
-  "../data/ieee_events.json",
-  "../data/acm_events.json",
-  "../data/securinets_events.json",
-  "../data/aerobotix_events.json",
-  "../data/cine_radio_events.json",
-  "../data/jci_events.json",
-  "../data/junior_events.json",
-  "../data/theatro_events.json",
-];
-
-// Load events from all club JSON files
+// Load events from PHP API
 async function loadEvents() {
   try {
-    // Fetch all club event files in parallel
-    const responses = await Promise.all(
-      clubEventFiles.map((file) => fetch(file)),
-    );
-
-    // Parse all responses
-    const clubEvents = await Promise.all(
-      responses.map((response) => response.json()),
-    );
-
-    // Flatten and combine all events into a single array
-    eventsData = clubEvents.flat();
-
-    renderFeaturedEvents();
-    renderUpcomingEvents();
+    const response = await fetch("../backend/events.php?action=getAll",{ method: 'GET'});
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    
+    if (result.status === 'success' && result.data) {
+      eventsData = result.data;
+      renderFeaturedEvents();
+      renderUpcomingEvents();
+    } else {
+      console.error("Error from API:", result.errors || result.message);
+    }
   } catch (error) {
-    console.error("Error loading events:", error);
+    console.error("Error loading events from API:", error);
   }
 }
 
