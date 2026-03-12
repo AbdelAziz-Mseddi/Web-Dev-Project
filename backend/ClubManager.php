@@ -79,4 +79,92 @@ class ClubManager {
         }
         return $categories;
     }
+
+    /**
+     * Create a new club
+     * @param array $payload Club data
+     * @return array Created club
+     */
+    public function createClub($payload) {
+        if (!isset($payload['id'], $payload['name'], $payload['category'], $payload['description'])) {
+            throw new Exception('Missing required fields');
+        }
+
+        if ($this->getClubById($payload['id'])) {
+            throw new Exception('Club ID already exists');
+        }
+
+        $club = [
+            'id' => $payload['id'],
+            'name' => $payload['name'],
+            'category' => $payload['category'],
+            'banner' => $payload['banner'] ?? '',
+            'description' => $payload['description']
+        ];
+
+        $this->clubs[] = $club;
+        $this->writeClubsToFile();
+        return $club;
+    }
+
+    /**
+     * Update an existing club
+     * @param string $id Club ID
+     * @param array $payload Updated data
+     * @return array Updated club
+     */
+    public function updateClub($id, $payload) {
+        $club = $this->getClubById($id);
+        if (!$club) {
+            throw new Exception('Club not found');
+        }
+
+        unset($payload['id']);
+        $updated = array_merge($club, $payload);
+
+        foreach ($this->clubs as $index => $c) {
+            if ($c['id'] === $id) {
+                $this->clubs[$index] = $updated;
+                break;
+            }
+        }
+
+        $this->writeClubsToFile();
+        return $updated;
+    }
+
+    /**
+     * Delete a club
+     * @param string $id Club ID
+     * @return bool Success
+     */
+    public function deleteClub($id) {
+        if (!$this->getClubById($id)) {
+            throw new Exception('Club not found');
+        }
+
+        $this->clubs = array_values(array_filter($this->clubs, function ($club) use ($id) {
+            return $club['id'] !== $id;
+        }));
+
+        $this->writeClubsToFile();
+        return true;
+    }
+
+    /**
+     * Write clubs to JSON file
+     */
+    private function writeClubsToFile() {
+        $filePath = $this->dataDir . 'clubs.json';
+        $encoded = json_encode($this->clubs, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+
+        if ($encoded === false) {
+            throw new Exception('Failed to encode clubs JSON');
+        }
+
+        $result = file_put_contents($filePath, $encoded . PHP_EOL, LOCK_EX);
+        if ($result === false) {
+            throw new Exception('Failed to persist clubs file');
+        }
+    }
 }
